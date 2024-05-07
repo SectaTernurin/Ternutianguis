@@ -27,11 +27,11 @@ esto se puede hacer desde la terminal siguiendo los siguientes comandos:
     En este paso la terminal le pedira su contraseña root.
     Una vez en el interprete de mysql tendrá que poner el siguiente comando
 
-    source <ruta del archivo  TernuTianguis.sql>
+    source  ruta del archivo  TernuTianguis.sql 
 
     una vez montada la base de datos es necesario añadir unos usuarios, para esto en el mismo interprete de mysql use el siguiente comando
 
-    source <ruta registrosBase.sql>
+    source  ruta registrosBase.sql 
 
     Listo ya ha terminado de montar la base de datos.
 ----------------------------------------------------------------------------------------------------------------------------------
