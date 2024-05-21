@@ -1,9 +1,20 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './paginas/Login'; // Asegúrate de importar el componente por defecto
 import { Home } from './paginas/Home';
 import { Inicio } from './paginas/Inicio';
+import { NavBarAux } from './paginas/NavBarAux';
+import { InicioComprador } from './paginas/InicioComprador';
+import { Acceder } from './paginas/General/Acceder';
+import { CerrarSesion } from './paginas/General/CerrarSesion';
+import { Registrarse } from './paginas/General/Registrarse';
+import { BuscarP } from './paginas/Comprador/BuscarP';
+import { ReviewProducto } from './paginas/Comprador/ReviewProducto';
+import { AltaProducto } from './paginas/Vendedor/AltaProducto';
+import { Actualizar } from './paginas/Vendedor/Actualizar';
+import { Prototipo } from './paginas/Vendedor/Prototipo';
+import { VendedorProductos } from './paginas/Vendedor/VendedorProductos';
+import { VerProductos } from './paginas/Vendedor/VerProductos';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'js-cookie'; // Importamos Cookies de js-cookie
@@ -24,25 +35,23 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar bg="light" variant="light">
-          <Container>
-            <Nav className="me-auto">
-              {currentPage === '/' ? (
-                <Nav.Link href="/login">Log in</Nav.Link>
-              ) : currentPage === '/login' ? (
-                <Nav.Link href="/">Regresar</Nav.Link>
-              ) : (
-                <Nav.Link href="/">Log out</Nav.Link>
-              )}
-            </Nav>
-          </Container>
-        </Navbar>
+        <NavBarAux />
 
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/acceder" element={<Acceder />} />
+            <Route path="/registrarse" element={<Registrarse />} />
             <Route path="/inicio" element={<Inicio />} />
+            <Route path="/inicioC" element={<InicioComprador />} />
+            <Route path="/buscarP" element={<BuscarP />} />
+            <Route path="/review" element={<ReviewProducto />} />
+            <Route path="/actualizar" element={<Actualizar />} />
+            <Route path="/agregar" element={<AltaProducto />} />
+            <Route path="/prototipo" element={<Prototipo />} />
+            <Route path="/verProductos" element={<VerProductos />} />
+            <Route path="/eliminar" element={<VendedorProductos />} />
+            <Route path="/cerrarSesion" element={<CerrarSesion />} /> 
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>
