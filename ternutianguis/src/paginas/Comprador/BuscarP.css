@@ -1,0 +1,44 @@
+input[type=text]
+{
+   width: 90%;
+   outline: none;
+   border-radius: 10px;
+   border-color: #ffb0b0;
+   background-color: #ffeaea;
+   text-align: center;
+
+}
+
+.App .Contenedor .Productos{
+    background-color:white;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 30px;
+    text-align: left;
+     
+}
+
+.App .Contenedor .Productos .Imagen
+{
+    text-align: right;
+}
+
+.App .Contenedor .Etiqueta
+{
+    text-align: right;
+}
+
+.App .Contenedor .Switch{
+    text-align: left;
+}
+
+.App .Contenedor .form-control
+{
+    border-color: #ffb0b0;
+    background-color: #ffeaea;
+    text-align: center;
+    border-radius: 10px;
+    width : 80%;
+}   

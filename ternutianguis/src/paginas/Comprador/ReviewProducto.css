@@ -1,0 +1,10 @@
+.two-columns-container {
+    display: flex; /* Utiliza Flexbox para posicionar las columnas */
+    justify-content: space-between; /* Distribuye el espacio entre las columnas */
+  }
+  
+  .column {
+    width: 48%; /* Define el ancho de cada columna */
+    padding: 20px;
+    border: 1px solid #ccc;
+  }  

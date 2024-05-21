@@ -1,0 +1,50 @@
+/* AltaProducto.css */
+
+/* Estilos para el contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: flex-start; /* Coloca los elementos en la parte superior del contenedor */
+    height: 5vh; /* Utiliza el 100% de la altura de la pantalla */
+  }
+  
+  .title-container {
+    margin-top: 50px; /* Espacio superior */
+  }
+    
+    /* Estilos para el título "Alta de Producto" */
+    h1 {
+      display: flex;
+      align-items: center;
+    }
+    
+    .product-image-container {
+      text-align: center; /* Alinea la imagen al centro */
+    }
+    
+    .product-image {
+      width: 200px; /* Define el ancho de la imagen */
+      height: auto; /* Mantén la proporción de aspecto original */
+    }
+    
+    /* Estilos para el formulario */
+    form {
+      margin-top: 20px;
+    }
+    
+    /* Estilos para los campos de entrada */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    /* Estilos para el botón de Guardar Producto */
+    button[type="submit"] {
+      margin-top: 20px;
+    }
+    
+    /* Estilos para el botón de Cancelar */
+    button[type="button"] {
+      margin-top: 20px;
+    }
+    
