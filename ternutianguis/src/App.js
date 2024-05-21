@@ -48,8 +48,8 @@ function App() {
             <Route path="/review" element={<ReviewProducto />} />
             <Route path="/actualizar" element={<Actualizar />} />
             <Route path="/agregar" element={<AltaProducto />} />
-            <Route path="/prototipo" element={<Prototipo />} />
             <Route path="/verProductos" element={<VerProductos />} />
+            <Route path="/prototipo" element={<Prototipo />} />
             <Route path="/eliminar" element={<VendedorProductos />} />
             <Route path="/cerrarSesion" element={<CerrarSesion />} /> 
             <Route path="*" element={<h1>404 Not Found</h1>} />
