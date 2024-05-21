@@ -80,7 +80,7 @@ export class Registrarse extends Component {
     return (
       <div className="auth-inner form-border">
         <form onSubmit={this.handleSubmit}>
-          <h3>Sign up</h3>
+          <h3>Registrarse</h3>
           {this.state.mensaje && <p>{this.state.mensaje}</p>}
           
           <div className="mb-3">

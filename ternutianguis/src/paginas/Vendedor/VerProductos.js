@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
+import './VerProductos.css';
 
 export function VerProductos() {
     const [productos, setProductos] = useState([]);
@@ -32,7 +33,11 @@ export function VerProductos() {
     };
 
     return (
-        <div style={{ margin: "5rem" }}>
+        <div className="table-container-wrapper">
+            <div className="table-title">
+                Tus Productos
+            </div>
+        <div className="table-container">
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
@@ -61,7 +66,7 @@ export function VerProductos() {
                                 <Link to={`/actualizar`}>
                                     <Button
                                         onClick={() => setID(item.id, item.descripcion, item.cantidad)}
-                                        variant="info"
+                                        className="btn-actualizar"
                                     >
                                         Actualizar
                                     </Button>
@@ -70,7 +75,7 @@ export function VerProductos() {
                             <td>
                                 <Button
                                     onClick={() => deleted(item.id)}
-                                    variant="danger"
+                                    className="btn-eliminar"
                                 >
                                     Eliminar
                                 </Button>
@@ -80,10 +85,11 @@ export function VerProductos() {
                 </tbody>
             </Table>
             <Link className="d-grid gap-2" to="/agregar">
-                <Button variant="warning" size="lg">
+                <Button className="btn-agregar" size="lg">
                     Agregar Producto
                 </Button>
             </Link>
+        </div>
         </div>
     );
 }
