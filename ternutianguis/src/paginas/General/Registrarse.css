@@ -44,11 +44,6 @@ h1,h2,h3,h4,h5,h6,label,span {
     border: 2px solid #ccc;
   }
   
-  .auth-wrapper .form-control:focus {
-    border-color: #167bff;
-    box-shadow: none;
-  }
-
   .custom-control-label {
     font-weight: 400;
   }
@@ -64,3 +59,11 @@ h1,h2,h3,h4,h5,h6,label,span {
     color: #167bff;
   }
   
+ .form-control
+{
+    border-color: #ffb0b0;
+    background-color: #ffeaea;
+    text-align: center;
+    border-radius: 10px;
+    width : 80%;
+}   

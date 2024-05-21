@@ -64,7 +64,7 @@ export class Acceder extends Component { // Exportamos por defecto aquí
     return (
       <div className="auth-inner form-border">
         <form onSubmit={this.handleSubmit}>
-          <h3>Log In</h3>
+          <h3>Acceder</h3>
           {this.state.mensaje && <p>{this.state.mensaje}</p>}
           <div className="mb-3">
             <label>Correo</label>
