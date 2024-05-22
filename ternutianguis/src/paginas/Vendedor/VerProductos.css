@@ -1,91 +1,93 @@
 /* Estilo para el contenedor de la tabla */
 .table-container-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Altura completa de la pantalla */
-  }
-  
-  .table-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 2rem; /* Espacio inferior entre el título y la tabla */
-    text-align: center; /* Centrar el texto horizontalmente */
-  }
-  
-  .table-container {
-    width: 80%; /* Ancho de la tabla */
-    margin-bottom: 2rem; /* Espacio inferior */
-  }
-  
-  .table-container table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table-container th, .table-container td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-    vertical-align: middle; /* Centrar verticalmente el contenido */
-  }
-  
-  .table-container thead {
-    background-color: #f2f2f2;
-  }
-  
-  .table-container tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .table-container tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Estilo para los botones */
-  .table-container .btn-actualizar {
-    background-color: #6a0dad; /* Morado */
-    border-color: #6a0dad;
-    color: white;
-  }
-  
-  .table-container .btn-actualizar:hover {
-    background-color: #5b0a8c;
-    border-color: #5b0a8c;
-  }
-  
-  .table-container .btn-eliminar {
-    background-color: #8a2be2; /* Morado */
-    border-color: #8a2be2;
-    color: white;
-  }
-  
-  .table-container .btn-eliminar:hover {
-    background-color: #7a1fc4;
-    border-color: #7a1fc4;
-  }
-  
-  .table-container .btn-agregar {
-    background-color: #9370db; /* Morado */
-    border-color: #9370db;
-    color: white;
-  }
-  
-  .table-container .btn-agregar:hover {
-    background-color: #836fb4;
-    border-color: #836fb4;
-  }
-  
-  /* Estilo para el botón de agregar */
-  .d-grid {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .d-grid .btn-agregar {
-    width: 200px; /* Ancho del botón */
-    text-align: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.table-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.table-container {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.table-container thead {
+  background-color: #f2f2f2;
+}
+
+.table-container tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-container tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo para los botones */
+.table-container .btn-actualizar {
+  background-color: #6a0dad; /* Morado */
+  border-color: #6a0dad;
+  color: white;
+}
+
+.table-container .btn-actualizar:hover {
+  background-color: #5b0a8c;
+  border-color: #5b0a8c;
+}
+
+.table-container .btn-eliminar {
+  background-color: #8a2be2; /* Morado */
+  border-color: #8a2be2;
+  color: white;
+}
+
+.table-container .btn-eliminar:hover {
+  background-color: #7a1fc4;
+  border-color: #7a1fc4;
+}
+
+.table-container .btn-agregar {
+  background-color: #9370db; /* Morado */
+  border-color: #9370db;
+  color: white;
+}
+
+.table-container .btn-agregar:hover {
+  background-color: #836fb4;
+  border-color: #836fb4;
+}
+
+/* Estilo para el botón de agregar */
+.d-grid {
+  display: flex;
+  justify-content: flex-start; /* Mueve el botón de agregar a la derecha */
+  width: 80%;
+  margin-bottom: 20px; /* Añade un margen superior si es necesario */
+}
+
+.d-grid .btn-agregar {
+  width: 200px; /* Ancho del botón */
+  text-align: center;
+}

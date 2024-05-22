@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import './Actualizar.css';
 
 export function Actualizar() {
 	// Se utiliza usestate para modificar y obtener valores del jsx
@@ -61,6 +62,9 @@ export function Actualizar() {
 	};
   
 	return (
+	<div className="container">
+      <div className="title-container"></div>
+      <h1>Actualizar</h1>
 	  <div>
 		<Form
 		  className="d-grid gap-2"
@@ -138,24 +142,17 @@ export function Actualizar() {
 			/>
 		  </Form.Group>
   
-		  {/* Hadinling an onclick event 
-			running an edit logic */}
 		  <Button
 			onClick={(e) => handelSubmit(e)}
 			variant="primary"
 			type="submit"
 			size="lg"
+			className="button-container"
 		  >
 			Actualizar informacion
 		  </Button>
-  
-		  {/* Redirecting to main page after editing */}
-		  <Link className="d-grid gap-2" to="/inicio">
-			<Button variant="warning" size="lg">
-			  Inicio
-			</Button>
-		  </Link>
 		</Form>
+	  </div>
 	  </div>
 	);
   }  

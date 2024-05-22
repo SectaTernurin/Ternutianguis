@@ -38,6 +38,11 @@ export function VerProductos() {
                 Tus Productos
             </div>
         <div className="table-container">
+        <Link className="d-grid gap-2" to="/agregar">
+                <Button className="btn-agregar" size="lg">
+                    Agregar Producto
+                </Button>
+            </Link>
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
@@ -84,11 +89,6 @@ export function VerProductos() {
                     ))}
                 </tbody>
             </Table>
-            <Link className="d-grid gap-2" to="/agregar">
-                <Button className="btn-agregar" size="lg">
-                    Agregar Producto
-                </Button>
-            </Link>
         </div>
         </div>
     );
