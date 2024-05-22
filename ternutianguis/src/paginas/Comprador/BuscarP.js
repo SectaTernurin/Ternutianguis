@@ -11,7 +11,7 @@ import './BuscarP.css';
 import { useState } from 'react';
 
 /**
- * Componente encargado de todo lo realciónado a la busqueda de productos 
+ * Componente eencargado de todo lo realciónado a la busqueda de productos 
  * @returns La visualización de la página de búsqueda de productos
  */
 export const BuscarP = () => {

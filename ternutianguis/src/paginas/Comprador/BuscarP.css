@@ -1,44 +1,57 @@
-input[type=text]
-{
+.App .Contenedor {
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    max-width: 100%; /* Asegura que no exceda el ancho del viewport */
+    height: auto; /* Permite que la altura se ajuste según el contenido */
+    background-color: lightblue; /* Mantiene el color de fondo */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 30px; /* Relleno interno */
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+    overflow: auto; /* Añade scroll si el contenido sobrepasa el tamaño del contenedor */
+    margin: 0 10px; /* Añade un margen pequeño a los lados */
+}
+
+/* Rest of your CSS styles */
+input[type=text] {
    width: 90%;
    outline: none;
    border-radius: 10px;
    border-color: #ffb0b0;
    background-color: #ffeaea;
    text-align: center;
-
 }
 
-.App .Contenedor .Productos{
-    background-color:white;
+.App .Contenedor .Productos {
+    background-color: white;
     border-radius: 20px;
     margin-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 30px;
     text-align: left;
-     
 }
 
-.App .Contenedor .Productos .Imagen
-{
+.App .Contenedor .Productos .Imagen {
     text-align: right;
 }
 
-.App .Contenedor .Etiqueta
-{
+.App .Contenedor .Etiqueta {
     text-align: right;
 }
 
-.App .Contenedor .Switch{
+.App .Contenedor .Switch {
     text-align: left;
 }
 
-.App .Contenedor .form-control
-{
+.App .Contenedor .form-control {
     border-color: #ffb0b0;
     background-color: #ffeaea;
     text-align: center;
     border-radius: 10px;
-    width : 80%;
-}   
+    width: 80%;
+}
+
+.button-container {
+    background-color: purple; /* Fondo morado para el contenedor del botón */
+    padding: 10px;
+    text-align: center;
+}

@@ -19,6 +19,8 @@ export const NavBarAux = () => {
             <Nav.Link href="/">Regresar</Nav.Link>
           ) : currentPage === '/verProductos' || currentPage === '/agregar'? (
             <Nav.Link href="/inicio">Regresar</Nav.Link>
+          ) : currentPage === '/review'? (
+            <Nav.Link href="/inicioC">Regresar</Nav.Link>
           ) : currentPage === '/inicio' ? (
             <>
               <Nav.Link href="/agregar">Agrega Producto</Nav.Link>
@@ -27,6 +29,7 @@ export const NavBarAux = () => {
             </>
           ) : currentPage === '/inicioC' ? (
             <>
+              <Nav.Link href="/review">Review</Nav.Link>
               <Nav.Link href="/cerrarSesion">Cerrar Sesión</Nav.Link>
             </>
           ) : currentPage === '/actualizar' ? (
