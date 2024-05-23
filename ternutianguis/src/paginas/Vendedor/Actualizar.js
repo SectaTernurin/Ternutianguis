@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './Actualizar.css';
@@ -7,16 +7,97 @@ import './Actualizar.css';
 export function Actualizar() {
 	// Se utiliza usestate para modificar y obtener valores del jsx
 	const [nombre, setnombre] = useState("");
+	const [descripcion, setdescripcion] = useState("");
 	const [precio, setprecio] = useState("");
 	const [cantidad, setcantidad] = useState("");
-	const [descripcion, setdescripcion] = useState("");
 	const [foto, setfoto] = useState("");
 	const [categoria, setcategoria] = useState("");
+	const [contacto, setcontacto] = useState("");
 	const [id, setid] = useState("");
   
 	//Usado para navegar con logica en js
 	let history = useNavigate();
   
+	const categorias = [
+		"Postres",
+		"Ropa",
+		"Dulces",
+		"Libros",
+		"Maquillaje",
+		"Juegos de mesa",
+		"Accesorios",
+		"Peluches",
+		"Juguetes",
+		"Papelería"
+	  ];
+	
+	  const opcionesContacto = [
+		"Facebook",
+		"WhatsApp",
+		"Instagram",
+		"Correo electrónico",
+		"Otro"
+	  ];
+	
+	  const [producto, setProducto] = useState({
+		nombre: '',
+		descripcion: '',
+		categoria: '',
+		imagen: null,
+		tipoContacto: '',
+		contacto: '',
+		precio: ''
+	  });
+	  const [errores, setErrores] = useState({
+		nombre: false,
+		descripcion: false,
+		categoria: false,
+		imagen: false,
+		tipoContacto: false,
+		contacto: false,
+		precio: false
+	  });
+	
+	  const handleChange = e => {
+		const { name, value } = e.target;
+		if (name === 'precio' && /^\$?\d*\.?\d{0,2}$/.test(value)) {
+		  setProducto(prevState => ({
+			...prevState,
+			[name]: value
+		  }));
+		} else {
+		  setProducto(prevState => ({
+			...prevState,
+			[name]: value
+		  }));
+		}
+		setErrores(prevState => ({
+		  ...prevState,
+		  [name]: false
+		}));
+	  };
+
+	const handleImagenChange = e => {
+		const imagen = e.target.files[0];
+		setProducto(prevState => ({
+		  ...prevState,
+		  imagen: imagen
+		}));
+		setErrores(prevState => ({
+		  ...prevState,
+		  imagen: false
+		}));
+	  };
+
+	  const handleTipoContactoChange = e => {
+		const { value } = e.target;
+		setProducto(prevState => ({
+		  ...prevState,
+		  tipoContacto: value,
+		  contacto: '' // Limpiar el campo de contacto cuando cambie el tipo de contacto
+		}));
+	  };
+
 	// Funcion para manejar la actualizacion y generar los cambios
 	const handelSubmit = (e) => {
 	  // Preventing from reload
@@ -62,19 +143,17 @@ export function Actualizar() {
 	};
   
 	return (
-	<div className="container">
-      <div className="title-container"></div>
-      <h1>Actualizar</h1>
-	  <div>
-		<Form
-		  className="d-grid gap-2"
-		  style={{ margin: "5rem" }}
-		>
-		  <Form.Group
-			className="mb-3"
-			controlId="formBasicEmail"
-		  >
-			<Form.Control
+	<div className="ContenedorActualizar">
+		<div className="ContenedorTitulo">
+			<h2>Actualizar</h2>
+		</div>
+	  <div className="ContenedorForm">
+		<div className="ColumnaFormIzq">
+		<Form className="d-form" style={{ margin: "5rem" }}>
+		  
+		  <Form.Group className="mb-3" controlId="nombre">
+		  <Form.Label>Nombre</Form.Label>
+			<Form.Control 
 			  value={nombre}
 			  onChange={(e) => setnombre(e.target.value)}
 			  type="text"
@@ -82,76 +161,106 @@ export function Actualizar() {
 			/>
 		  </Form.Group>
   
-		  <Form.Group
-			className="mb-3"
-			controlId="formBasicPrecio"
-		  >
+		  <Form.Group className="mb-3" controlId="descripcion">
+		  <Form.Label>Descripcion</Form.Label>
 			<Form.Control
-			  value={precio}
-			  onChange={(e) => setprecio(e.target.value)}
-			  type="number"
-			  placeholder="Precio"
+			  value={descripcion}
+			  onChange={(e) => setdescripcion(e.target.value)}
+			  as="textarea" rows={3}
+			  placeholder="Descripcion"
 			/>
 		  </Form.Group>
+		  
+		  <Form.Group className="mb-3" controlId="categoria">
+		  <Form.Label>Categoria</Form.Label>
+		  <Form.Control as="select" name="categoria" 
+		  value={producto.categoria} onChange={handleChange} isInvalid={errores.categoria} required>
+			<option value="">Selecciona una categoría</option>
+            {categorias.map((categoria, index) => (
+              <option key={index} value={categoria}>{categoria}</option>
+            ))}
+			</Form.Control>
+		  </Form.Group>
+
+		  <Form.Group className="mb-3" controlId="imagen">
+          	<Form.Label>Imagen</Form.Label>
+			<Form.Control
+			  value={foto}
+			  onChange={(e) => setfoto(e.target.value)}
+			  //onChange={handleImagenChange}  
+			  type="file"
+			  accept=".png,.jpg"
+			  //placeholder="Imagen"
+			  name="imagen" 
+			  isInvalid={errores.imagen} required
+			/>
+			<Form.Text muted>Solo se aceptan imágenes en formato .png y .jpg</Form.Text>
+			<Form.Control.Feedback type="invalid">Recuerda subir una imagen</Form.Control.Feedback>
+		  </Form.Group>
+
+		  </Form>
+		</div>
+		<div className="ColumnaFormDer">
+		<Form className="d-form" style={{ margin: "5rem" }}>
+
+		<Form.Group className="mb-3" controlId="tipoContacto">
+          <Form.Label>Tipo de Contacto</Form.Label>
+          <Form.Control as="select" name="tipoContacto" 
+		  value={producto.tipoContacto} onChange={handleTipoContactoChange} 
+		  isInvalid={errores.tipoContacto} required>
+            <option value="">Selecciona una opción</option>
+            {opcionesContacto.map((opcion, index) => (
+              <option key={index} value={opcion}>{opcion}</option>
+            ))}
+          </Form.Control>
+          <Form.Control.Feedback type="invalid">Recuerda seleccionar una opción</Form.Control.Feedback>
+        </Form.Group>
+        {producto.tipoContacto && producto.tipoContacto !== "Otro" && (
+          <Form.Group className="mb-3" controlId="contacto">
+            <Form.Label>{producto.tipoContacto === "Correo electrónico" ? "Correo" : "Usuario"} *</Form.Label>
+            <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
+            <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
+          </Form.Group>
+        )}
+        {producto.tipoContacto === "Otro" && (
+          <Form.Group className="mb-3" controlId="contacto">
+            <Form.Label>Otro</Form.Label>
+            <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
+            <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
+          </Form.Group>
+        )}
+
+		<Form.Group className="mb-3" controlId="precio">
+		  <Form.Label>Precio</Form.Label>
+			<Form.Control
+				type="text" name="precio" value={producto.precio} onChange={handleChange} 
+				isInvalid={errores.precio} required
+			/>
+			<Form.Text muted>Escribe el signo de $ y después el precio con números</Form.Text>
+
+		  </Form.Group>
   
-		  <Form.Group
-			className="mb-3"
-			controlId="formBasicCantidad"
-		  >
+		  <Form.Group className="mb-3" controlId="cantidad">
+		  <Form.Label>Cantidad</Form.Label>
 			<Form.Control
 			  value={cantidad}
 			  onChange={(e) => setcantidad(e.target.value)}
 			  type="number"
 			  placeholder="Cantidad"
 			/>
-		  </Form.Group>
-  
-		  <Form.Group
-			className="mb-3"
-			controlId="formBasicDescripcion"
-		  >
-			<Form.Control
-			  value={descripcion}
-			  onChange={(e) => setdescripcion(e.target.value)}
-			  type="text"
-			  placeholder="Descripcion"
-			/>
-		  </Form.Group>
-  
-		  <Form.Group
-			className="mb-3"
-			controlId="formBasicFoto"
-		  >
-			<Form.Control
-			  value={foto}
-			  onChange={(e) => setfoto(e.target.value)}
-			  type="text"
-			  placeholder="Foto"
-			/>
-		  </Form.Group>
-  
-		  <Form.Group
-			className="mb-3"
-			controlId="formBasicCategoria"
-		  >
-			<Form.Control
-			  value={categoria}
-			  onChange={(e) => setcategoria(e.target.value)}
-			  type="text"
-			  placeholder="Categoria"
-			/>
-		  </Form.Group>
+		  </Form.Group>  
   
 		  <Button
 			onClick={(e) => handelSubmit(e)}
 			variant="primary"
 			type="submit"
 			size="lg"
-			className="button-container"
+			className="Actualizarboton"
 		  >
 			Actualizar informacion
 		  </Button>
 		</Form>
+		</div>
 	  </div>
 	  </div>
 	);

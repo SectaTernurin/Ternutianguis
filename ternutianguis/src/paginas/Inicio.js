@@ -1,4 +1,4 @@
-//import './Inicio.css';
+import './Home.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,7 +8,7 @@ import { Navbar } from 'react-bootstrap';
 
  export const Inicio = () => {
     return (
-        <div className="Contenedor">
+        <div className="ContenedorInicio">
             <h1>Página de inicio</h1>
             <h2>Bienvenido a Ternutianguis!</h2>
         </div>
