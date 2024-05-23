@@ -133,24 +133,25 @@ export const AltaProducto = () => {
   };
 
   return (
-    <div className="container">
-      <div className="title-container"></div>
-      <h1>Alta de Producto</h1>
+    <div className="ContenedorAltaProducto">
+      <div className="ContenedorTituloAP">
+        <h2>Alta de Producto</h2>
+      </div>
       <div className="product-image-container">
         <Image src={require('../imagenes/ternurin.jpeg')} alt="Ternutiaguis" className="product-image" />
       </div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="nombre">
+        <Form.Group className="form-group-act" controlId="nombre">
           <Form.Label>Nombre *</Form.Label>
           <Form.Control type="text" name="nombre" value={producto.nombre} onChange={handleChange} isInvalid={errores.nombre} required />
           <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group controlId="descripcion">
+        <Form.Group className="form-group-act" controlId="descripcion">
           <Form.Label>Descripción *</Form.Label>
           <Form.Control as="textarea" rows={3} name="descripcion" value={producto.descripcion} onChange={handleChange} isInvalid={errores.descripcion} required />
           <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group controlId="categoria">
+        <Form.Group className="form-group-act" controlId="categoria">
           <Form.Label>Categoría *</Form.Label>
           <Form.Control as="select" name="categoria" value={producto.categoria} onChange={handleChange} isInvalid={errores.categoria} required>
             <option value="">Selecciona una categoría</option>
@@ -160,13 +161,13 @@ export const AltaProducto = () => {
           </Form.Control>
           <Form.Control.Feedback type="invalid">Recuerda seleccionar una categoría</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group controlId="imagen">
+        <Form.Group className="form-group-act" controlId="imagen">
           <Form.Label>Imagen *</Form.Label>
           <Form.Control type="file" accept=".png,.jpg" name="imagen" onChange={handleImagenChange} isInvalid={errores.imagen} required />
           <Form.Text muted>Solo se aceptan imágenes en formato .png y .jpg</Form.Text>
           <Form.Control.Feedback type="invalid">Recuerda subir una imagen</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group controlId="tipoContacto">
+        <Form.Group className="form-group-act" controlId="tipoContacto">
           <Form.Label>Tipo de Contacto *</Form.Label>
           <Form.Control as="select" name="tipoContacto" value={producto.tipoContacto} onChange={handleTipoContactoChange} isInvalid={errores.tipoContacto} required>
             <option value="">Selecciona una opción</option>
@@ -184,13 +185,13 @@ export const AltaProducto = () => {
           </Form.Group>
         )}
         {producto.tipoContacto === "Otro" && (
-          <Form.Group controlId="contacto">
+          <Form.Group className="form-group-act" controlId="contacto">
             <Form.Label>Otro *</Form.Label>
             <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
             <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
           </Form.Group>
         )}
-        <Form.Group controlId="precio">
+        <Form.Group className="form-group-act" controlId="precio">
           <Form.Label>Precio *</Form.Label>
           <Form.Control type="text" name="precio" value={producto.precio} onChange={handleChange} isInvalid={errores.precio} required />
           <Form.Text muted>Escribe el signo de $ y después el precio con números</Form.Text>

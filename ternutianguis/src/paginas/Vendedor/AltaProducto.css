@@ -1,5 +1,5 @@
 /* Estilos para el contenedor principal */
-.container {
+.ContenedorAltaProducto {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra los elementos horizontalmente */
@@ -7,15 +7,22 @@
     height: 5vh; /* Utiliza el 100% de la altura de la pantalla */
   }
   
-  .title-container {
-    margin-top: 50px; /* Espacio superior */
+  .ContenedorTituloAP {
+    background-color: lightblue;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
   }
-    
-    /* Estilos para el título "Alta de Producto" */
-    h1 {
-      display: flex;
-      align-items: center;
-    }
     
     .product-image-container {
       text-align: center; /* Alinea la imagen al centro */
@@ -29,20 +36,24 @@
     /* Estilos para el formulario */
     form {
       margin-top: 20px;
+      text-align: center;
     }
     
     /* Estilos para los campos de entrada */
-    .form-group {
-      margin-bottom: 20px;
+    .form-group-act, .form-control-act {
+      margin-bottom: 10px;
+      text-align: center;
     }
     
     /* Estilos para el botón de Guardar Producto */
     button[type="submit"] {
       margin-top: 20px;
+      margin-bottom: 20px;
     }
     
     /* Estilos para el botón de Cancelar */
     button[type="button"] {
       margin-top: 20px;
+      margin-bottom: 20px;
     }
     

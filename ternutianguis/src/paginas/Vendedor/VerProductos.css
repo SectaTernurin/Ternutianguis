@@ -1,80 +1,91 @@
-/* Estilo para el contenedor de la tabla */
-.table-container-wrapper {
+body {
+  background-color: rgb(229, 237, 240); 
+  box-sizing: border-box;
+}  
+
+.ContenedorVerProductos {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 100vh;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-left: 0;
+  align-items: center;
 }
 
-.table-title {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
+.ContenedorTituloVerProductos {
+  background-color: lightblue;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-bottom: 10px;
+  padding: 20px;
   width: 100%;
+  max-width: 1200px;
+  text-align: center;
 }
 
-.table-container {
-  width: 80%;
+.ContenedorTabla {
+  width: 100%;
   margin-bottom: 2rem;
 }
 
-.table-container table {
+.ContenedorTabla table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.table-container th, .table-container td {
+.ContenedorTabla th, .ContenedorTabla td {
   padding: 10px;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid white;
   vertical-align: middle;
 }
 
-.table-container thead {
-  background-color: #f2f2f2;
+.ContenedorTabla thead {
+  background-color: whitesmoke;
 }
 
-.table-container tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+.ContenedorTabla tbody tr:nth-child(even) {
+  background-color: lightgray;
 }
 
-.table-container tbody tr:hover {
-  background-color: #f1f1f1;
+.ContenedorTabla tbody tr:hover {
+  background-color: white;
 }
 
 /* Estilo para los botones */
-.table-container .btn-actualizar {
+.ContenedorTabla .btn-actualizar {
   background-color: #6a0dad; /* Morado */
   border-color: #6a0dad;
   color: white;
 }
 
-.table-container .btn-actualizar:hover {
+.ContenedorTabla .btn-actualizar:hover {
   background-color: #5b0a8c;
   border-color: #5b0a8c;
 }
 
-.table-container .btn-eliminar {
+.ContenedorTabla .btn-eliminar {
   background-color: #8a2be2; /* Morado */
   border-color: #8a2be2;
   color: white;
 }
 
-.table-container .btn-eliminar:hover {
+.ContenedorTabla .btn-eliminar:hover {
   background-color: #7a1fc4;
   border-color: #7a1fc4;
 }
 
-.table-container .btn-agregar {
+.ContenedorTabla .btn-agregar {
   background-color: #9370db; /* Morado */
   border-color: #9370db;
   color: white;
 }
 
-.table-container .btn-agregar:hover {
+.ContenedorTabla .btn-agregar:hover {
   background-color: #836fb4;
   border-color: #836fb4;
 }
@@ -84,7 +95,7 @@
   display: flex;
   justify-content: flex-start; /* Mueve el botón de agregar a la derecha */
   width: 80%;
-  margin-bottom: 20px; /* Añade un margen superior si es necesario */
+  margin-bottom: 10px; /* Añade un margen superior si es necesario */
 }
 
 .d-grid .btn-agregar {
