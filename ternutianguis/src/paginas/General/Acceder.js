@@ -62,7 +62,7 @@ export class Acceder extends Component { // Exportamos por defecto aquí
 
   render() {
     return (
-      <div className="auth-inner form-border">
+      <div className="ContenedorAcceder">
         <form onSubmit={this.handleSubmit}>
           <h3>Acceder</h3>
           {this.state.mensaje && <p>{this.state.mensaje}</p>}
@@ -89,7 +89,7 @@ export class Acceder extends Component { // Exportamos por defecto aquí
             />
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="botonIngresar">
               Ingresar
             </button>
           </div>

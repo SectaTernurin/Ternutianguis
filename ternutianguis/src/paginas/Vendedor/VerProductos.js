@@ -3,10 +3,17 @@ import { Button, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import './VerProductos.css';
+import { Eliminar } from './Eliminar';
 
 export function VerProductos() {
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
+
+    const [eliminarAbierto, setEliminarAbierto] = useState(false);
+
+    const eliminarPopup = () => {
+        setEliminarAbierto(!eliminarAbierto);
+    };
 
     useEffect(() => {
         // Aquí se agregan los cambios de los datos
@@ -80,11 +87,13 @@ export function VerProductos() {
                             </td>
                             <td>
                                 <Button
-                                    onClick={() => deleted(item.id)}
+                                    //onClick={() => deleted(item.id)}
+                                    onClick={eliminarPopup}
                                     className="btn-eliminar"
                                 >
                                     Eliminar
                                 </Button>
+                                <Eliminar estaAbierto={eliminarAbierto} estaCerrado={eliminarPopup} />
                             </td>
                         </tr>
                     ))}

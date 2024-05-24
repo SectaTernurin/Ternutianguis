@@ -8,12 +8,12 @@ export const CerrarSesion = () => {
     <div className="logout-container">
       <div className="left-section">
         <div className="image-container">
-          <h1 className="title">Ternutiaguis</h1>
+          <h1 className="title">Ternutianguis</h1>
           <Image src={require('../imagenes/ternurin.jpeg')} alt="Ternutiaguis" />
         </div>
       </div>
       <div className="right-section">
-        <h1>¿Seguro que quieres cerrar sesión?</h1>
+        <h1>¿Esta seguro de cerrar sesión?</h1>
         <div className="buttons">
           <Link to="/" className="accept-button">Aceptar</Link>
           <Link to="/inicio" className="cancel-button">Cancelar</Link>

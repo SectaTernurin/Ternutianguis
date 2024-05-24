@@ -22,20 +22,20 @@
   }
   
   .title {
-    margin-top: 50px; 
+    margin-top: 50px;
     text-align: center;
     color: #000000;
   }
   
   .right-section {
-    border: 3px solid #ffc0cb;
+    border: 3px solid #fc9ead;
     border-radius: 10px;
     padding: 20px;
   }
   
   .right-section h1 {
     color: #000000;
-    font-size: 2.5 rem;
+    font-size: 1.5 rem;
   }
   
   .buttons {
@@ -59,7 +59,7 @@
   }
   
   .buttons .accept-button {
-    background-color: #ff6347; 
+    background-color: #fc83d7; 
   }
   
   .buttons .cancel-button {

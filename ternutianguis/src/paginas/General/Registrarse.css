@@ -63,7 +63,11 @@ h1, h2, h3, h4, h5, h6, label, span {
 .auth-inner button.btn.btn-primary {
   background-color: #6a5acd; /* Cambia el color de fondo del botón */
   border-color: #6a5acd; /* Cambia el color del borde del botón */
-  margin: 0 10px; /* Añadir margen a los botones si es necesario */
+  /*margin: 0 10px; /* Añadir margen a los botones si es necesario */
+  border-radius: 5px;
+  padding: 5px; /* Aumenta el tamaño del botón */
+  margin-left: 100px; /* Mueve el botón ligeramente a la derecha */
+  font-size: 16px; /* Ajusta el tamaño del texto si es necesario */
 }
 
 .auth-inner button.btn.btn-primary:hover {

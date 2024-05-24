@@ -1,26 +1,13 @@
-h1, h2, h3, h4, h5, h6, label, span {
-  font-weight: 300; 
-  font-family: 'Fira Sans', sans-serif;
-  font-size: 16px; 
-}
-
-.auth-wrapper h3 {
-  text-align: center;
-  margin: 20px; /* Agrega espacio arriba de 20px */
-  line-height: 1;
-  padding-bottom: 20px;
-}
-
 .auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: center; /* Alinea verticalmente el contenido en el centro */
   flex-direction: column;
-  text-align: left;
+  text-align: center;
   height: 100vh; /* Establece la altura del contenedor al 100% del viewport */
 }
 
-.auth-inner {
+.ContenedorAcceder {
   width: 350px; 
   margin: 50px auto; /* Ajusta el margen superior a 50px y centra horizontalmente */
   background: #f7f4f6;
@@ -30,7 +17,7 @@ h1, h2, h3, h4, h5, h6, label, span {
   transition: all .3s;
 }
 
-.auth-inner .form-control {
+.ContenedorAcceder .form-control {
   border-color: #833372;
   box-shadow: none;
 }
@@ -40,19 +27,22 @@ h1, h2, h3, h4, h5, h6, label, span {
 }
 
 /* Centrar botones */
-.auth-inner .btn-wrapper {
+.ContenedorAcceder .d-grid {
   display: flex;
   justify-content: center; /* Centra horizontalmente los botones */
   margin-top: 20px; /* Añadir margen superior si es necesario */
 }
 
-.auth-inner button.btn.btn-primary {
+.ContenedorAcceder button.botonIngresar {
   background-color: #6a5acd; /* Cambia el color de fondo del botón */
   border-color: #6a5acd; /* Cambia el color del borde del botón */
-  margin: 0 10px; /* Añadir margen a los botones si es necesario */
+  border-radius: 5px;
+  padding: 5px; /* Aumenta el tamaño del botón */
+  margin-left: 50px; /* Mueve el botón ligeramente a la derecha */
+  font-size: 16px; /* Ajusta el tamaño del texto si es necesario */
 }
 
-.auth-inner button.btn.btn-primary:hover {
+.ContenedorAcceder button.botonIngresar:hover {
   background-color: #483d8b; /* Color al pasar el ratón */
   border-color: #483d8b; /* Color al pasar el ratón */
 }
