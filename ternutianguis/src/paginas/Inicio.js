@@ -10,7 +10,7 @@ import { Navbar } from 'react-bootstrap';
     return (
         <div className="ContenedorInicio">
             <h1>Página de inicio</h1>
-            <h2>Bienvenido a Ternutianguis!</h2>
+            <h2>Bienvenidx a Ternutianguis!</h2>
         </div>
     )
  } 

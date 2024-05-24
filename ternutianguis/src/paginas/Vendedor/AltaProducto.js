@@ -138,7 +138,7 @@ export const AltaProducto = () => {
         <h2>Alta de Producto</h2>
       </div>
       <div className="product-image-container">
-        <Image src={require('../imagenes/ternurin.jpeg')} alt="Ternutiaguis" className="product-image" />
+        <Image src={require('../imagenes/ternurin.png')} alt="Ternutiaguis" className="product-image" />
       </div>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="form-group-act" controlId="nombre">

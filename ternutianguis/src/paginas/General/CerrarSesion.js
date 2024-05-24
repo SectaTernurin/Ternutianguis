@@ -9,7 +9,7 @@ export const CerrarSesion = () => {
       <div className="left-section">
         <div className="image-container">
           <h1 className="title">Ternutianguis</h1>
-          <Image src={require('../imagenes/ternurin.jpeg')} alt="Ternutiaguis" />
+          <Image src={require('../imagenes/ternurin.png')} alt="Ternutiaguis" />
         </div>
       </div>
       <div className="right-section">

@@ -43,7 +43,11 @@ export const ReviewProducto = () => {
   };
 
   return (
-    <div className="two-columns-container">
+    <div className='ContenedorReview'>
+    <div className='TituloReview'>
+      <h2>Agregar Review</h2>
+    </div>
+    <div className="ColumnasContenedor">
       <div className="column">
         {/* Contenido de la primera columna */}
       </div>
@@ -67,7 +71,7 @@ export const ReviewProducto = () => {
                 </div>
               </FormGroup>
               <FormGroup>
-                <Label for="reviewText">Deja tu comentario aquí</Label>
+                <Label for="reviewText">Agrega tu comentario aquí</Label>
                 <Input
                   type="textarea"
                   name="reviewText"
@@ -81,23 +85,24 @@ export const ReviewProducto = () => {
               </Button>
             </Form>
           </div>
-          
-          {/* Lista de revisiones */}
-          <div>
-            <h2>Lista de Reviews:</h2>
-            <ul>
-              {reviews.map((review, index) => (
-                <li key={index}>
-                  <p>Estrellas: {review.stars}</p>
-                  <p>Comentario: {review.text}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+    
         </div>
       </div>
     </div>
+      
+      {/* Lista de revisiones */}
+      <div className='listaReviews'>
+      <h2>Reviews</h2>
+        <ul>
+        {reviews.map((review, index) => (
+        <li key={index}>
+          <p>Estrellas: {review.stars}</p>
+          <p>Comentario: {review.text}</p>
+        </li>
+        ))}
+        </ul>
+      </div>
+
+    </div>
   );
 };
-
-//export default ReviewProducto;
