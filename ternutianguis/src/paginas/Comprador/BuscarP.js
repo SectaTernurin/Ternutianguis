@@ -257,9 +257,11 @@ export const BuscarP = () => {
 
     return ( 
         <div className="Contenedor">
-            <form onSubmit={handleBuscarProductos}> 
-                <input type='text' placeholder='Buscar productos' onChange={handleBuscar}/>
-                <Button variant="outline-secondary" size="sm" type='submit' >Buscar</Button>{' '}
+            <form onSubmit={handleBuscarProductos}>
+                <div className='buscarProducto'>
+                    <input type='text' placeholder='Buscar productos' onChange={handleBuscar}/>
+                    <Button variant="outline-secondary" size="sm" type='submit' >Buscar</Button>{' '}
+                </div> 
                 <Container>
                     <Row>
                         <Col className='Etiqueta'>

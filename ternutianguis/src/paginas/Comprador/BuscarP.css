@@ -1,22 +1,21 @@
 .App .Contenedor {
     width: 100%; /* Ocupa el 100% del ancho disponible */
-    max-width: 100%; /* Asegura que no exceda el ancho del viewport */
-    height: auto; /* Permite que la altura se ajuste según el contenido */
+    height: 100%;
     background-color: lightblue; /* Mantiene el color de fondo */
     border-radius: 20px; /* Bordes redondeados */
     padding: 30px; /* Relleno interno */
     box-sizing: border-box; /* Incluye padding en el tamaño total */
     overflow: auto; /* Añade scroll si el contenido sobrepasa el tamaño del contenedor */
-    margin: 0 10px; /* Añade un margen pequeño a los lados */
 }
 
 /* Rest of your CSS styles */
 input[type=text] {
-   width: 90%;
+   width: 100%;
    outline: none;
    border-radius: 10px;
    border-color: #ffb0b0;
    background-color: #ffeaea;
+   margin-right: 50px;
    text-align: center;
 }
 
@@ -27,6 +26,8 @@ input[type=text] {
     margin-left: 10px;
     margin-right: 10px;
     padding: 30px;
+    width: 80%; /* Ocupa el 100% del ancho disponible */
+    height: 80%;
     text-align: left;
 }
 
@@ -34,12 +35,17 @@ input[type=text] {
     text-align: right;
 }
 
-.App .Contenedor .Etiqueta {
+.App .Contenedor .Etiqueta p{
     text-align: right;
+    margin-bottom: 10px;
 }
 
 .App .Contenedor .Switch {
+    display: flex;
+    align-items: center;
     text-align: left;
+    margin-top: -27px; /* Ajusta hacia arriba */
+    margin-left: -15px; /* Ajusta hacia la izquierda */
 }
 
 .App .Contenedor .form-control {
@@ -47,7 +53,7 @@ input[type=text] {
     background-color: #ffeaea;
     text-align: center;
     border-radius: 10px;
-    width: 80%;
+    width: 100%;
 }
 
 .button-container {
@@ -55,3 +61,16 @@ input[type=text] {
     padding: 10px;
     text-align: center;
 }
+
+.buscarProducto {
+    display: flex;
+    justify-content: flex-start; /* Alinea los elementos al inicio (izquierda) del contenedor */
+    align-items: center;
+    width: 100%;
+    margin-top: -20px;
+  }
+  
+  .buscarProducto input {
+    width: 700px; /* Define el ancho deseado de la barra de búsqueda */
+    margin-right: 10px; /* Espacio entre el input y el botón */
+  }
