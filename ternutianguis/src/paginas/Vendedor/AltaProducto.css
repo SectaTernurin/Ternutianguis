@@ -1,0 +1,75 @@
+/* Estilos para el contenedor principal */
+.ContenedorAltaProducto {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: flex-start; /* Coloca los elementos en la parte superior del contenedor */
+    height: 5vh; /* Utiliza el 100% de la altura de la pantalla */
+  }
+  
+  .ContenedorTituloAP {
+    background-color: lightblue;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+  }
+    
+    .product-image-container {
+      text-align: center; /* Alinea la imagen al centro */
+    }
+    
+    .product-image {
+      width: 200px; /* Define el ancho de la imagen */
+      height: auto; /* Mantén la proporción de aspecto original */
+    }
+    
+    /* Estilos para el formulario */
+    form {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    /* Estilos para los campos de entrada */
+    .form-group-act, .form-control-act {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    /* Estilos para el botón de Guardar Producto */
+    button[type="submit"] {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    /* Estilos para el botón de Cancelar */
+    button[type="button"] {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .precio-input {
+      display: flex;
+      align-items: center;
+    }
+    
+    .dolares-input,
+    .centavos-input {
+      width: 100px; /* Ajusta el ancho de los recuadros de entrada */
+      display: inline-block;
+      text-align: right;
+    }
+    
+    .precio-input span {
+      margin: 0 2px; /* Espacio entre el símbolo y los recuadros */
+      font-size: 14px;  /* Asegúrate de que el tamaño del símbolo se ajuste */
+    }

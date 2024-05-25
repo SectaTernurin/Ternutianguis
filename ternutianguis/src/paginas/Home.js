@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
                 <h2>Bienvenido a Ternutianguis!</h2>
             </div>
             <div className="contenido-izquierda">
-                <Image src={require('./imagenes/ternurin.jpeg')} width="20%" />
+                <Image src={require('./imagenes/ternurin.png')} width="20%" />
             </div>
             <div className="contenido-derecha">
                 <h5>Ternutianguis es un sistema web que permite hacer compras y ventas en 

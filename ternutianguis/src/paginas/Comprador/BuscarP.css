@@ -1,0 +1,76 @@
+.App .Contenedor {
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    height: 100%;
+    background-color: lightblue; /* Mantiene el color de fondo */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 30px; /* Relleno interno */
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+    overflow: auto; /* Añade scroll si el contenido sobrepasa el tamaño del contenedor */
+}
+
+/* Rest of your CSS styles */
+input[type=text] {
+   width: 100%;
+   outline: none;
+   border-radius: 10px;
+   border-color: #ffb0b0;
+   background-color: #ffeaea;
+   margin-right: 50px;
+   text-align: center;
+}
+
+.App .Contenedor .Productos {
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 30px;
+    width: 80%; /* Ocupa el 100% del ancho disponible */
+    height: 80%;
+    text-align: left;
+}
+
+.App .Contenedor .Productos .Imagen {
+    text-align: right;
+}
+
+.App .Contenedor .Etiqueta p{
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.App .Contenedor .Switch {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-top: -27px; /* Ajusta hacia arriba */
+    margin-left: -15px; /* Ajusta hacia la izquierda */
+}
+
+.App .Contenedor .form-control {
+    border-color: #ffb0b0;
+    background-color: #ffeaea;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.button-container {
+    background-color: purple; /* Fondo morado para el contenedor del botón */
+    padding: 10px;
+    text-align: center;
+}
+
+.buscarProducto {
+    display: flex;
+    justify-content: flex-start; /* Alinea los elementos al inicio (izquierda) del contenedor */
+    align-items: center;
+    width: 100%;
+    margin-top: -20px;
+  }
+  
+  .buscarProducto input {
+    width: 700px; /* Define el ancho deseado de la barra de búsqueda */
+    margin-right: 10px; /* Espacio entre el input y el botón */
+  }

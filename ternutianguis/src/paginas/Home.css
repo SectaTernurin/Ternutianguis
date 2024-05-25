@@ -1,35 +1,68 @@
-.App .Contenedor{
+.App .Contenedor {
     background-color: lightblue;
-    border-radius: 50px;
-    align-items: center;
-    margin-top: 50px;
-    margin-left: 30px;
-    margin-right: 30px;
-    padding: 30px;
-    
-}
-
-.App H1{
-    color:mediumorchid;
-    font-size: 50px;
-    font-family:monospace;
-    align-self: center;
-}
-
-.App H2{
-    color:mediumpurple;
-    align-self: center;
-}
-
-.auth-inner {
+    border-radius: 30px;
     display: flex;
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra los elementos hijos verticalmente */
+    margin-top: 50px;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding: 30px;
+    width: 100%; 
+    max-width: 1000px; 
+    text-align: center; /* Centra horizontalmente el contenido textual */
+}
+
+.Bienvenida{
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    height: 100%;
+    background-color: lightblue; /* Mantiene el color de fondo */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 30px; /* Relleno interno */
+    margin-bottom: -30px;
+    margin-top: 30px;
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
+    overflow: auto; /* Añade scroll si el contenido sobrepasa el tamaño del contenedor */
+}
+
+.App .ContenedorInicio {
+    background-color: lightblue;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra los elementos hijos verticalmente */
+    margin-top: 50px;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding: 30px;
+    width: 100%; 
+    max-width: 1000px; 
+    text-align: center; /* Centra horizontalmente el contenido textual */
+}
+
+
+.App h1 {
+    color: mediumorchid;
+    font-size: 50px;
+    font-family: monospace;
+    text-align: center;
+    margin: 0;
+}
+
+.App h2 {
+    color: mediumpurple;
+    align-self: center;
+    margin: 0;
 }
 
 .contenido-izquierda {
     margin-right: 20px;
+    margin-top: 20px;
 }
 
 .contenido-derecha {
     overflow: hidden;
+    margin-top: 20px;
 }

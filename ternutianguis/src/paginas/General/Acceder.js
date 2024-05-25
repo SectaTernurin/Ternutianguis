@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './Login.css';
+import './Acceder.css';
 import Cookies from 'js-cookie'; // Importamos Cookies de js-cookie
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
-export default class Login extends Component { // Exportamos por defecto aquí
+export class Acceder extends Component { // Exportamos por defecto aquí
   constructor(props) {
     super(props);
     this.state = {
@@ -62,9 +62,9 @@ export default class Login extends Component { // Exportamos por defecto aquí
 
   render() {
     return (
-      <div className="auth-inner form-border">
+      <div className="ContenedorAcceder">
         <form onSubmit={this.handleSubmit}>
-          <h3>Log In</h3>
+          <h3>Acceder</h3>
           {this.state.mensaje && <p>{this.state.mensaje}</p>}
           <div className="mb-3">
             <label>Correo</label>
@@ -89,7 +89,7 @@ export default class Login extends Component { // Exportamos por defecto aquí
             />
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="botonIngresar">
               Ingresar
             </button>
           </div>
