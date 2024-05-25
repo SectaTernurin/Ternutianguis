@@ -230,15 +230,36 @@ export function Actualizar() {
           </Form.Group>
         )}
 
-		<Form.Group className="mb-3" controlId="precio">
-		  <Form.Label>Precio</Form.Label>
-			<Form.Control
-				type="text" name="precio" value={producto.precio} onChange={handleChange} 
-				isInvalid={errores.precio} required
-			/>
-			<Form.Text muted>Escribe el signo de $ y después el precio con números</Form.Text>
+<Form.Group controlId="precio">
+      <Form.Label>Precio *</Form.Label>
+      <div className="precio-input">
+        <span>$</span>
+        <Form.Control
+          type="number"
+          name="precioP"
+          value={producto.precioP}
+          onChange={handleChange}
+          isInvalid={!!errores.precio}
+          required
+          className="dolares-input"
+          min="0"
+        />
+        <span>.</span>
+        <Form.Control
+          type="number"
+          name="precioC"
+          value={producto.precioC}
+          onChange={handleChange}
+          isInvalid={!!errores.precio}
+          required
+          className="centavos-input"
+          min="0"
+          max="99"
+        />
+      </div>
+      <Form.Control.Feedback type="invalid">Ingresa un precio válido</Form.Control.Feedback>
+    </Form.Group>
 
-		  </Form.Group>
   
 		  <Form.Group className="mb-3" controlId="cantidad">
 		  <Form.Label>Cantidad</Form.Label>
@@ -247,9 +268,11 @@ export function Actualizar() {
 			  onChange={(e) => setcantidad(e.target.value)}
 			  type="number"
 			  placeholder="Cantidad"
+			  min="1"  // Asegura que solo se puedan ingresar números mayores o iguales a 1
+        	  step="1"
 			/>
 		  </Form.Group>  
-  
+   
 		  <Button
 			onClick={(e) => handelSubmit(e)}
 			variant="primary"

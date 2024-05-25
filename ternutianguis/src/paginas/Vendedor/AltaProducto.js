@@ -33,7 +33,9 @@ export const AltaProducto = () => {
     imagen: null,
     tipoContacto: '',
     contacto: '',
-    precio: ''
+    precioP: '',
+    precioC: '',
+    cantidad: ''
   });
   const [errores, setErrores] = useState({
     nombre: false,
@@ -42,11 +44,12 @@ export const AltaProducto = () => {
     imagen: false,
     tipoContacto: false,
     contacto: false,
-    precio: false
+    precio: false,
+    cantidad: false
   });
 
   const handleChange = e => {
-    const { name, value } = e.target;
+    /*const { name, value } = e.target;
     if (name === 'precio' && /^\$?\d*\.?\d{0,2}$/.test(value)) {
       setProducto(prevState => ({
         ...prevState,
@@ -61,7 +64,28 @@ export const AltaProducto = () => {
     setErrores(prevState => ({
       ...prevState,
       [name]: false
-    }));
+    }));*/
+    const { name, value } = e.target;
+    let erroresActualizados = { ...errores };
+
+    if (name === 'precioDolares') {
+      const precioDolares = value.replace(/[^0-9]/g, '');
+      setProducto((prevProducto) => ({ ...prevProducto, precioDolares }));
+    } else if (name === 'precioCentavos') {
+      const precioCentavos = value.replace(/[^0-9]/g, '').slice(0, 2);
+      setProducto((prevProducto) => ({ ...prevProducto, precioCentavos }));
+    } else {
+      setProducto((prevProducto) => ({ ...prevProducto, [name]: value }));
+    }
+
+    // Validar si ambos campos están vacíos
+    if (producto.precioDolares === '' && producto.precioCentavos === '') {
+      erroresActualizados.precio = 'El precio no puede estar vacío';
+    } else {
+      erroresActualizados.precio = '';
+    }
+
+    setErrores(erroresActualizados);
   };
 
   const handleTipoContactoChange = e => {
@@ -191,12 +215,42 @@ export const AltaProducto = () => {
             <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
           </Form.Group>
         )}
-        <Form.Group className="form-group-act" controlId="precio">
-          <Form.Label>Precio *</Form.Label>
-          <Form.Control type="text" name="precio" value={producto.precio} onChange={handleChange} isInvalid={errores.precio} required />
-          <Form.Text muted>Escribe el signo de $ y después el precio con números</Form.Text>
-          <Form.Control.Feedback type="invalid">Ingresa un precio válido</Form.Control.Feedback>
-        </Form.Group>
+        <Form.Group controlId="precio">
+      <Form.Label>Precio *</Form.Label>
+      <div className="precio-input">
+        <span>$</span>
+        <Form.Control
+          type="number"
+          name="precioP"
+          value={producto.precioP}
+          onChange={handleChange}
+          isInvalid={!!errores.precio}
+          required
+          className="dolares-input"
+          min="0"
+        />
+        <span>.</span>
+        <Form.Control
+          type="number"
+          name="precioC"
+          value={producto.precioC}
+          onChange={handleChange}
+          isInvalid={!!errores.precio}
+          required
+          className="centavos-input"
+          min="0"
+          max="99"
+        />
+      </div>
+      <Form.Control.Feedback type="invalid">Ingresa un precio válido</Form.Control.Feedback>
+    </Form.Group>
+        <Form.Group className="mb-3" controlId="cantidad">
+        <Form.Label>Cantidad *</Form.Label>
+        <Form.Control type="number" name="cantidad" value={producto.cantidad} onChange={handleChange} isInvalid={errores.cantidad} required
+        min="1"  // Asegura que solo se puedan ingresar números mayores o iguales a 1
+        step="1"/>
+        <Form.Control.Feedback type="invalid">Ingresa una cantidad válida</Form.Control.Feedback>
+        </Form.Group>  
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Button variant="secondary" onClick={handleCancel}>
             Cancelar
@@ -209,5 +263,3 @@ export const AltaProducto = () => {
     </div>
   );
 };
-
-//export default AltaProducto;

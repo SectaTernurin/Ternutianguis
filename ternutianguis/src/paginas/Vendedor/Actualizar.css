@@ -49,3 +49,20 @@
     background-color: blueviolet;
     margin-top: 2rem;
   }  
+
+  .precio-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dolares-input,
+  .centavos-input {
+    width: 100px; /* Ajusta el ancho de los recuadros de entrada */
+    display: inline-block;
+    text-align: right;
+  }
+  
+  .precio-input span {
+    margin: 0 2px; /* Espacio entre el símbolo y los recuadros */
+    font-size: 14px;  /* Asegúrate de que el tamaño del símbolo se ajuste */
+  }
