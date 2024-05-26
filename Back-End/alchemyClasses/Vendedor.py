@@ -1,9 +1,11 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from alchemyClasses import db
 
+
+
 class Vendedor(db.Model):
-    __tablename_ = 'Vendedores'
-    idVendedor = Column(Integer, primary_key=True, autoincrement=True)
+    __tablename__ = 'Vendedores'
+    idComprador = Column(Integer, primary_key=True, autoincrement=True)
     nombre = Column(String(200))
     apPat = Column(String(200))
     apMat = Column(String(200), nullable=True)
@@ -12,8 +14,9 @@ class Vendedor(db.Model):
     telefono = Column(String(45))
     correo = Column(String(45), unique=True)
     fotoDePerfil = Column(db.LargeBinary, nullable=True)
-    
-    def __init__(self, nombre, apPat, usuario, contrasena, telefono, correo, apMat=None, fotoDePerfil=None):
+
+
+    def __init__(self, nombre, apPat, apMat, usuario, contrasena, telefono, correo, fotoDePerfil=None):
         self.nombre = nombre
         self.apPat = apPat
         self.apMat = apMat
@@ -22,3 +25,6 @@ class Vendedor(db.Model):
         self.telefono = telefono
         self.correo = correo
         self.fotoDePerfil = fotoDePerfil
+
+    def __str__(self):
+        return f'{self.nombre} {self.apPat} {self.apMat}'

@@ -1,12 +1,13 @@
 from flask import Flask, redirect, render_template, url_for, request, flash, session
 from alchemyClasses import db
 from alchemyClasses.Comprador import Comprador
-from controller.catalogue import catalogue
+from controller.generalController import generalController
 from model.model_comprador import get_log_In
+from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://adminTernu:TernuTianguis.Admin2024@localhost:3306/TernuTianguis'
-app.register_blueprint(catalogue)
+app.register_blueprint(generalController)
 app.config['SECRET_KEY'] = 'dev'
 
 db.init_app(app)
@@ -30,6 +31,8 @@ def loginVerificar():
     return {
         "usuario": comprador.usuario
     }
+
+
 
 
 @app.route('/')
