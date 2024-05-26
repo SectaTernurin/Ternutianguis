@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-flask-app": "cd .. && source venv/bin/activate && cd Back-End && flask run",
+    "start-flask-app": "cd .. && cd Back-End && flask run",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

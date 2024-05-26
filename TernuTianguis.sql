@@ -53,6 +53,7 @@ CREATE TABLE `Productos`(
 CREATE TABLE `Comentarios`(
     `idComentario` INT NOT NULL AUTO_INCREMENT,
     `comentario` VARCHAR(200) NOT NULL,
+    `calificacion` INT NOT NULL,
     `idProducto` INT NOT NULL,
     `idComprador` INT NOT NULL,
     PRIMARY KEY (`idComentario`),
