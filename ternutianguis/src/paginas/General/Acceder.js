@@ -10,9 +10,10 @@ export class Acceder extends Component { // Exportamos por defecto aquí
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      mensaje: ''
+      correo: '',
+      contrasena: '',
+      mensaje: '',
+      rol: '',
     };
   }
 
@@ -23,25 +24,29 @@ export class Acceder extends Component { // Exportamos por defecto aquí
     });
   }
 
+  handleOptionChange = (event) => {
+    this.setState({ rol: event.target.value });
+  };
+ 
+
   handleSubmit = async event => {
     event.preventDefault();
-    const { email, password } = this.state;
-
-    if (email && password) {
+    const { correo, contrasena,rol } = this.state;
+    if (correo && contrasena && rol) {
       try {
-        const response = await fetch('/loginVerificar', {
+        const response = await fetch('/general/verificarAcceso', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ correo: email, contrasena: password }),
+          body: JSON.stringify({ correo: correo, contrasena: contrasena, opcion: rol}),
         });
 
         const data = await response.json();
 
         if (data.usuario) {
           // Usuario valido, guardamos el token en las cookies
-          Cookies.set('authToken', data.token, { path: '/' });
+          Cookies.set('usuario', data.id)
           window.location.href = '/inicio';
         } else {
           if (data.errorC === 'Contrasena incorrecta') {
@@ -71,8 +76,8 @@ export class Acceder extends Component { // Exportamos por defecto aquí
             <input
               type="email"
               className="form-control"
-              name="email"
-              value={this.state.email}
+              name="correo"
+              value={this.state.correo}
               onChange={this.handleInputChange}
               placeholder="Ingrese su correo"
             />
@@ -82,12 +87,27 @@ export class Acceder extends Component { // Exportamos por defecto aquí
             <input
               type="password"
               className="form-control"
-              name="password"
-              value={this.state.password}
+              name="contrasena"
+              value={this.state.contrasena}
               onChange={this.handleInputChange}
               placeholder="Ingrese su contraseña"
             />
           </div>
+
+          <div className="mb-3">
+            <label>Selecciona el rol asociado a tu cuenta:</label>
+            <select
+              className="form-control"
+              name="rol"
+              value={this.state.rol}
+              onChange={this.handleInputChange}
+            >
+              <option value="">...</option>
+              <option value="comprador">Comprador</option>
+              <option value="vendedor">Vendedor</option>
+            </select>
+          </div>
+          
           <div className="d-grid">
             <button type="submit" className="botonIngresar">
               Ingresar

@@ -3,10 +3,7 @@ from alchemyClasses.Comprador import Comprador
 
 
 
-def get_compradores():
-    return Comprador.query.all()
-
-def get_log_In(correo, contrasena):
+def verificacionInformacion(correo, contrasena):
     tError = False
     compradorValido = Comprador.query.filter_by(correo = correo).first()
     if compradorValido != None:

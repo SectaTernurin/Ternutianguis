@@ -10,6 +10,7 @@ export class VendedorProductos extends Component {
         if (!window.confirm('¿Estás seguro de que deseas eliminar este producto?')) {
             return; // Detener si el usuario no confirma
         }
+        
 
         try {
             const response = await fetch(`/eliminarProducto/${idProducto}`, {

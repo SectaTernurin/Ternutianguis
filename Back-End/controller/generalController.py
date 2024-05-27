@@ -4,6 +4,9 @@ from alchemyClasses import db
 from alchemyClasses.Comprador import Comprador
 from alchemyClasses.Vendedor import Vendedor
 from model.modelGeneral import * 
+from model.modelComprador import  verificacionInformacion as compradorVerificacion
+from model.modelVendedor import  verificacionInformacion as vendedorVerificacion
+
 
 
 
@@ -43,3 +46,33 @@ def registrar():
         return {
             "error": "Correo ya registrado."
         } 
+
+
+@generalController.route('/verificarAcceso', methods=['POST'])
+def verificarAcceso():
+    correo = request.json['correo']
+    contrasena = request.json['contrasena']
+    rol = request.json['opcion']
+    if rol == 'comprador':
+        resultado = compradorVerificacion(correo, contrasena)
+    elif rol == 'vendedor':
+        resultado = vendedorVerificacion(correo, contrasena)
+
+    persona = resultado[0] #persona puede ser comprador o vendedor
+    error = resultado[1]
+    print(persona)
+    if persona == None:
+        return {
+            "error": "Usuario no encontrado"
+        }
+    if error :
+        return {
+            "errorC": "Contrasena incorrecta"
+        }
+    return {
+        "id" : persona.idComprador if rol == 'comprador' else persona.idVendedor,
+        "usuario": persona.usuario,
+        "rol": rol
+        }             
+
+    

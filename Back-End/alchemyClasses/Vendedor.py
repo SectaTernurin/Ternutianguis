@@ -5,7 +5,7 @@ from alchemyClasses import db
 
 class Vendedor(db.Model):
     __tablename__ = 'Vendedores'
-    idComprador = Column(Integer, primary_key=True, autoincrement=True)
+    idVendedor = Column(Integer, primary_key=True, autoincrement=True)
     nombre = Column(String(200))
     apPat = Column(String(200))
     apMat = Column(String(200), nullable=True)

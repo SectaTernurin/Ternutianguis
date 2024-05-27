@@ -4,8 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import './VerProductos.css';
 import { Eliminar } from './Eliminar';
+import Cookies from "js-cookie";
 
 export function VerProductos() {
+
+    const id = Cookies.get('usuario');
     const [productos, setProductos] = useState([]);
     const navigate = useNavigate();
 
@@ -14,6 +17,10 @@ export function VerProductos() {
     const eliminarPopup = () => {
         setEliminarAbierto(!eliminarAbierto);
     };
+
+    // Sacamos el id de una cookie usuario
+  
+
 
     useEffect(() => {
         // Aquí se agregan los cambios de los datos
@@ -38,10 +45,11 @@ export function VerProductos() {
         console.log(`Deleted product with ID: ${id}`);
     };
 
+
     return (
-        <div className="ContenedorVerProductos">
+        <div className="ContenedorVerProductos" >
             <div className="ContenedorTituloVerProductos">
-                <h2>Tus Productos</h2>
+                <h2>Tus Productos </h2>
             </div>
         <div className="ContenedorTabla">
         <Link className="d-grid gap-2" to="/agregar">
