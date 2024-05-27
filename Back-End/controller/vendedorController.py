@@ -21,3 +21,5 @@ def obtenerProductos():
     diccionario["Productos"] = lista
     resultadoJson = json.dumps(diccionario)
     return resultadoJson
+
+

@@ -35,6 +35,27 @@ export function VerProductos() {
         }
     }
 
+
+    const eliminarProducto = async (idProducto) => {
+        try {
+            const response = await fetch('/productos/darDeBajaProducto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({id: idProducto}),
+            });
+            const data = await response.json();
+            console.log(data.mensaje);
+            obtenerProductos();
+        } catch (error) {
+            console.error('Error al obtener productos:', error);
+            return;
+        }
+    }
+
+
+
     useEffect(() => { 
         obtenerProductos();
     }, []);
@@ -44,11 +65,7 @@ export function VerProductos() {
         console.log(`Set ID: ${id}, Name: ${name}, Age: ${age}`);
     };
 
-    const deleted = (id) => {
-        // Función para manejar la eliminación del producto.
-        setProductos(productos.filter(product => product.id !== id));
-        console.log(`Deleted product with ID: ${id}`);
-    };
+  
 
     const cadenaAImagen = (cadena) =>{
 
@@ -111,8 +128,7 @@ export function VerProductos() {
                             </td>
                             <td>
                                 <Button
-                                    //onClick={() => deleted(item.id)}
-                                    onClick={eliminarPopup}
+                                    onClick={async () => eliminarProducto(item.id)}
                                     className="btn-eliminar"
                                 >
                                     Eliminar

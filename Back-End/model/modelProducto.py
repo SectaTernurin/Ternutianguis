@@ -47,3 +47,15 @@ def preparar_producto(productos):
     for producto in productos:
         diccionario[producto.idProducto] = producto.to_dic()
     return diccionario
+
+def eliminarProducto(idProducto):
+    """ Funcion que elimina un producto de la base de datos
+    Parámetros:
+    idProducto: int -> id del producto a eliminar
+    Retorna:
+    diccionario con mensaje de exito
+    """
+    producto = Producto.query.filter(Producto.idProducto == idProducto).first()
+    db.session.delete(producto)
+    db.session.commit()
+    return {'mensaje': 'Producto dado de baja exitosamente'}

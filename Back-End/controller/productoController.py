@@ -36,3 +36,11 @@ def darDeAltaProducto():
         {'mensaje': 'Formato de archivo no permitido'}
 
     return {'mensaje': 'Producto dado de alta exitosamente'}
+
+
+@productoController.route('/darDeBajaProducto', methods=['POST', 'GET'])
+def darDeBajaProducto():
+    data = request.get_json()
+    idProducto = data['id']
+    eliminarProducto(idProducto)
+    return {'mensaje': 'Producto dado de baja exitosamente'}
