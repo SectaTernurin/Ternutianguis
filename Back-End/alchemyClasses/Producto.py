@@ -30,13 +30,15 @@ class Producto(db.Model):
             "id" : self.idProducto,
             "nombre": self.nombre,
             "descripcion": self.descripcion,
-            "precio": self.precio,
-            "foto": base64.b64encode(self.foto).decode("utf-8"),
-            "cantidad": self.cantidad,
             "categoria": self.categoria,
+            "imagen": base64.b64encode(self.foto).decode("utf-8"),
+            "precio": self.precio,
+            "cantidad": self.cantidad,
             "idVendedor": self.idVendedor
         }
         
+
+    
             
             
 

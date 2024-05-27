@@ -18,20 +18,25 @@ export function VerProductos() {
         setEliminarAbierto(!eliminarAbierto);
     };
 
-    // Sacamos el id de una cookie usuario
-  
+    const  obtenerProductos = async () =>{
+        try {
+            const response = await fetch('/vendendor/productos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({id: id}),
+            });
+            const data = await response.json();
+            setProductos(data.Productos);
+        } catch (error) {
+            console.error('Error al obtener productos:', error);
+            return;
+        }
+    }
 
-
-    useEffect(() => {
-        // Aquí se agregan los cambios de los datos
-        const data = [
-            { id: 1, nombre: 'a', descripcion: 'Producto 1', categoria: 'Categoría 1', 
-             imagen: 'foto1.jpg', contacto: 'contacto1@example.com', precio: 10, cantidad: 100 },
-            { id: 2, nombre: 'b', descripcion: 'Producto 2', categoria: 'Categoría 2',
-            imagen: 'foto2.jpg', contacto: 'contacto2@example.com', precio: 20, cantidad: 200 },
-            // Agrega más productos según sea necesario
-        ];
-        setProductos(data);
+    useEffect(() => { 
+        obtenerProductos();
     }, []);
 
     const setID = (id, name, age) => {
@@ -65,7 +70,6 @@ export function VerProductos() {
                         <th>Descripcion</th>
                         <th>Categoria</th>
                         <th>Imagen</th>
-                        <th>Contacto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Actualizar</th>
@@ -80,7 +84,6 @@ export function VerProductos() {
                             <td>{item.descripcion}</td>
                             <td>{item.categoria}</td>
                             <td>{item.imagen}</td>
-                            <td>{item.contacto}</td>
                             <td>{item.precio}</td>
                             <td>{item.cantidad}</td>
                             <td>

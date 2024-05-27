@@ -1,4 +1,10 @@
 import io
+import json
+from alchemyClasses import db
+from alchemyClasses.Producto import Producto
+from alchemyClasses.Vendedor import Vendedor
+
+
 
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg'} ##Para ser capaces de traducir despues la imagen
 
@@ -18,3 +24,26 @@ def obtenerBinario(imagen):
     memoria.seek(0)
     return memoria.read()
 
+def buscarProductosVendedor(id):
+    """ Funcion que busca los productos de un vendedor
+    Parámetros:
+    id: int -> id del vendedor
+    Retorna:
+    lista de productos serializados
+    """
+    productos = Producto.query.filter(Producto.idVendedor == id).all()
+    if productos == []:
+        return [ ]
+    return preparar_producto(productos)
+
+def preparar_producto(productos):
+    """ Funcion que prepara un diccionario para que se pueda serializar a JSON
+    Parámetros:
+    productos: list -> lista de productos a serializar
+    Retorna:
+    diccionario con los productos serializados
+    """
+    diccionario = {}
+    for producto in productos:
+        diccionario[producto.idProducto] = producto.to_dic()
+    return diccionario
