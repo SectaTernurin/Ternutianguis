@@ -64,8 +64,7 @@ export const AltaProducto = () => {
 
     setErrores(erroresActualizados);
   };
-
-
+  
 
   const handleImagenChange = e => {
     const imagen = e.target.files[0];
@@ -95,16 +94,16 @@ export const AltaProducto = () => {
     }
     try {
       const formData = new FormData();
-      formData.append( 'id', Cookies.get('usuario'));
       formData.append('nombre', producto.nombre);
       formData.append('descripcion', producto.descripcion);
       formData.append('categoria', producto.categoria);
       formData.append('imagen', producto.imagen);
-      formData.append('tipoContacto', producto.tipoContacto);
-      formData.append('contacto', producto.contacto);
-      formData.append('precio', producto.precio);
-      
-      await fetch('/api/altaProducto', {
+      formData.append('precioP', producto.precioP);
+      formData.append('precioC', producto.precioC);
+      formData.append('cantidad', producto.cantidad);
+      formData.append( 'id', Cookies.get('usuario'));
+
+      await fetch('/productos/darDeAltaProducto', {
         method: 'POST',
         body: formData
       });
