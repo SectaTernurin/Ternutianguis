@@ -50,6 +50,17 @@ export function VerProductos() {
         console.log(`Deleted product with ID: ${id}`);
     };
 
+    const cadenaAImagen = (cadena) =>{
+
+        const byteCharacters = atob(cadena);//Pasamos de base64 a binario
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) { //Convertimos a un array de enteros
+            byteNumbers[i] = byteCharacters.charCodeAt(i); //Obtenemos el valor ASCII de cada caracter
+        }
+        const byteArray = new Uint8Array(byteNumbers); //Convertimos a un array de enteros sin signo
+        return URL.createObjectURL(new Blob([byteArray], { type: 'image/jpeg' })); //Creamos la url de la imagen
+    }
+
 
     return (
         <div className="ContenedorVerProductos" >
@@ -83,7 +94,9 @@ export function VerProductos() {
                             <td>{item.nombre}</td>
                             <td>{item.descripcion}</td>
                             <td>{item.categoria}</td>
-                            <td>{item.imagen}</td>
+                            <td>
+                                <img src={cadenaAImagen(item.imagen)} alt="Imagen" width="100" height="100"/>
+                            </td>
                             <td>{item.precio}</td>
                             <td>{item.cantidad}</td>
                             <td>
