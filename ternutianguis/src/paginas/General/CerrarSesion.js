@@ -2,8 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './CerrarSesion.css';
 import Image from 'react-bootstrap/Image';
+import Cookies from 'js-cookie'; 
 
 export const CerrarSesion = () => {
+
+  const cerrarSesion = () => {
+    console.log('Cerrando sesión');
+    Cookies.remove('usuario');
+  }
+
   return (
     <div className="logout-container">
       <div className="left-section">
@@ -15,7 +22,7 @@ export const CerrarSesion = () => {
       <div className="right-section">
         <h1>¿Esta seguro de cerrar sesión?</h1>
         <div className="buttons">
-          <Link to="/" className="accept-button">Aceptar</Link>
+          <Link to="/" className="accept-button" onClick={cerrarSesion}>Aceptar</Link>
           <Link to="/inicio" className="cancel-button">Cancelar</Link>
         </div>
       </div>

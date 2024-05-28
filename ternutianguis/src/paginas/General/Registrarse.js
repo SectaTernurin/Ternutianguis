@@ -31,46 +31,45 @@ export class Registrarse extends Component {
   handleOptionChange = (event) => {
     this.setState({ rol: event.target.value });
   };
- 
+
+
   handleSubmit = async event => {
     event.preventDefault();
-    const { nombre, apellidoPaterno, apellidoMaterno, usuario, telefono, email, rol } = this.state;
-
-    if (nombre && apellidoPaterno && apellidoMaterno && usuario && telefono && email && rol) {
+    const {email, usuario, telefono, rol, nombre, apellidoPaterno, apellidoMaterno} = this.state;
+    console.log(email, usuario, telefono, rol, nombre, apellidoPaterno, apellidoMaterno);
+  
+    if (email && usuario && telefono && rol && nombre && apellidoPaterno) {
       try {
-        const response = await fetch('/loginVerificar', {
+        const response = await fetch('/general/registrar', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            nombre,
-            apellidoPaterno,
-            apellidoMaterno,
-            usuario,
-            telefono,
-            correo: email,
-            opcion: rol
+          body: JSON.stringify({ 
+            correo: email, 
+            nombreUsuario: usuario, 
+            telefono: telefono, 
+            opcion: rol,
+            nombre: nombre,
+            apellidoPaterno: apellidoPaterno,
+            apellidoMaterno: apellidoMaterno,
           }),
         });
-
+  
         const data = await response.json();
-
-        if (data.usuario) {
-          // Usuario valido, guardamos el token en las cookies
-          Cookies.set('authToken', data.token, { path: '/' });
-          window.location.href = '/inicio';
+        console.log('Respuesta del servidor:', data);
+  
+        if (data.registro === 'Registro realizado exitosamente.') {
+          alert('Se ha completado tu registro, tu contraseña fue enviada a tu correo.');
+          window.location.href = '/login';
         } else {
-          if (data.errorC === 'Contrasena incorrecta') {
-            this.setState({ mensaje: 'La contraseña ingresada es incorrecta.' });
-          } else {
-            this.setState({ mensaje: 'Usuario no encontrado.' });
-          }
+          this.setState({ mensaje: 'No se realizó el registro, el correo ya está registrado' });
         }
       } catch (error) {
-        console.error('Error al registrarse:', error);
-        this.setState({ mensaje: 'Error al iniciar sesión. Vuelva a intentarlo' });
+        console.error('Error al registrar:', error);
+        this.setState({ mensaje: 'Error al registrar. Por favor, inténtelo de nuevo más tarde.' });
       }
+      
     } else {
       alert('Por favor complete todos los campos.');
     }
@@ -84,7 +83,7 @@ export class Registrarse extends Component {
           {this.state.mensaje && <p>{this.state.mensaje}</p>}
           
           <div className="mb-3">
-            <label>Nombre</label>
+            <label>Nombre*</label>
             <input
               type="text"
               className="form-control"
@@ -96,7 +95,7 @@ export class Registrarse extends Component {
           </div>
 
           <div className="mb-3">
-            <label>Apellido Paterno</label>
+            <label>Apellido Paterno*</label>
             <input
               type="text"
               className="form-control"
@@ -120,7 +119,7 @@ export class Registrarse extends Component {
           </div>
 
           <div className="mb-3">
-            <label>Usuario</label>
+            <label>Usuario*</label>
             <input
               type="text"
               className="form-control"
@@ -132,7 +131,7 @@ export class Registrarse extends Component {
           </div>
 
           <div className="mb-3">
-            <label>Teléfono</label>
+            <label>Teléfono*</label>
             <input
               type="tel"
               className="form-control"
@@ -144,7 +143,7 @@ export class Registrarse extends Component {
           </div>
 
           <div className="mb-3">
-            <label>Correo</label>
+            <label>Correo*</label>
             <input
               type="email"
               className="form-control"
@@ -156,7 +155,7 @@ export class Registrarse extends Component {
           </div>
 
           <div className="mb-3">
-            <label>Rol</label>
+            <label>Rol*</label>
             <select
               className="form-control"
               name="rol"

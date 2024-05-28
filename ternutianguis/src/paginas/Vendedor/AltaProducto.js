@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import './AltaProducto.css';
+import Cookies from 'js-cookie';
 
 export const AltaProducto = () => {
   const categorias = [
@@ -18,53 +19,29 @@ export const AltaProducto = () => {
     "Papelería"
   ];
 
-  const opcionesContacto = [
-    "Facebook",
-    "WhatsApp",
-    "Instagram",
-    "Correo electrónico",
-    "Otro"
-  ];
 
   const [producto, setProducto] = useState({
     nombre: '',
     descripcion: '',
     categoria: '',
     imagen: null,
-    tipoContacto: '',
-    contacto: '',
     precioP: '',
     precioC: '',
     cantidad: ''
   });
+
   const [errores, setErrores] = useState({
     nombre: false,
     descripcion: false,
     categoria: false,
     imagen: false,
-    tipoContacto: false,
-    contacto: false,
-    precio: false,
+    precioP: false,
+    precioC: false,
     cantidad: false
   });
 
   const handleChange = e => {
-    /*const { name, value } = e.target;
-    if (name === 'precio' && /^\$?\d*\.?\d{0,2}$/.test(value)) {
-      setProducto(prevState => ({
-        ...prevState,
-        [name]: value
-      }));
-    } else {
-      setProducto(prevState => ({
-        ...prevState,
-        [name]: value
-      }));
-    }
-    setErrores(prevState => ({
-      ...prevState,
-      [name]: false
-    }));*/
+
     const { name, value } = e.target;
     let erroresActualizados = { ...errores };
 
@@ -87,15 +64,7 @@ export const AltaProducto = () => {
 
     setErrores(erroresActualizados);
   };
-
-  const handleTipoContactoChange = e => {
-    const { value } = e.target;
-    setProducto(prevState => ({
-      ...prevState,
-      tipoContacto: value,
-      contacto: '' // Limpiar el campo de contacto cuando cambie el tipo de contacto
-    }));
-  };
+  
 
   const handleImagenChange = e => {
     const imagen = e.target.files[0];
@@ -129,11 +98,12 @@ export const AltaProducto = () => {
       formData.append('descripcion', producto.descripcion);
       formData.append('categoria', producto.categoria);
       formData.append('imagen', producto.imagen);
-      formData.append('tipoContacto', producto.tipoContacto);
-      formData.append('contacto', producto.contacto);
-      formData.append('precio', producto.precio);
-      
-      await fetch('/api/altaProducto', {
+      formData.append('precioP', producto.precioP);
+      formData.append('precioC', producto.precioC);
+      formData.append('cantidad', producto.cantidad);
+      formData.append( 'id', Cookies.get('usuario'));
+
+      await fetch('/productos/darDeAltaProducto', {
         method: 'POST',
         body: formData
       });
@@ -188,33 +158,9 @@ export const AltaProducto = () => {
         <Form.Group className="form-group-act" controlId="imagen">
           <Form.Label>Imagen *</Form.Label>
           <Form.Control type="file" accept=".png,.jpg" name="imagen" onChange={handleImagenChange} isInvalid={errores.imagen} required />
-          <Form.Text muted>Solo se aceptan imágenes en formato .png y .jpg</Form.Text>
+          <Form.Text muted>Solo se aceptan imágenes en formato .jpg</Form.Text>
           <Form.Control.Feedback type="invalid">Recuerda subir una imagen</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className="form-group-act" controlId="tipoContacto">
-          <Form.Label>Tipo de Contacto *</Form.Label>
-          <Form.Control as="select" name="tipoContacto" value={producto.tipoContacto} onChange={handleTipoContactoChange} isInvalid={errores.tipoContacto} required>
-            <option value="">Selecciona una opción</option>
-            {opcionesContacto.map((opcion, index) => (
-              <option key={index} value={opcion}>{opcion}</option>
-            ))}
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">Recuerda seleccionar una opción</Form.Control.Feedback>
-        </Form.Group>
-        {producto.tipoContacto && producto.tipoContacto !== "Otro" && (
-          <Form.Group controlId="contacto">
-            <Form.Label>{producto.tipoContacto === "Correo electrónico" ? "Correo" : "Usuario"} *</Form.Label>
-            <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
-            <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
-          </Form.Group>
-        )}
-        {producto.tipoContacto === "Otro" && (
-          <Form.Group className="form-group-act" controlId="contacto">
-            <Form.Label>Otro *</Form.Label>
-            <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
-            <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
-          </Form.Group>
-        )}
         <Form.Group controlId="precio">
       <Form.Label>Precio *</Form.Label>
       <div className="precio-input">

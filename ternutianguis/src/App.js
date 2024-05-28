@@ -30,6 +30,8 @@ function App() {
     return Cookies.get('language'); // Obtiene la cookie 'language'
   }
 
+  
+
   const currentPage = window.location.pathname;
 
   return (
