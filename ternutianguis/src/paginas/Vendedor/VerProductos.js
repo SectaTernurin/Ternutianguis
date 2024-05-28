@@ -62,7 +62,7 @@ export function VerProductos() {
 
     const setID = (id, name, age) => {
         // Función para manejar la actualización del producto.
-        console.log(`Set ID: ${id}, Name: ${name}, Age: ${age}`);
+        Cookies.set('idProducto', id);
     };
 
   
@@ -119,7 +119,7 @@ export function VerProductos() {
                             <td>
                                 <Link to={`/actualizar`}>
                                     <Button
-                                        onClick={() => setID(item.id, item.descripcion, item.cantidad)}
+                                        onClick={() => setID(item.id)}
                                         className="btn-actualizar"
                                     >
                                         Actualizar

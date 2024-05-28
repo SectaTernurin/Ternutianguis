@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Image } from "react-bootstrap";
+import { Button, Col, Form, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './Actualizar.css';
+import Cookies from "js-cookie";
 
 export function Actualizar() {
 	// Se utiliza usestate para modificar y obtener valores del jsx
@@ -12,9 +13,43 @@ export function Actualizar() {
 	const [cantidad, setcantidad] = useState("");
 	const [foto, setfoto] = useState("");
 	const [categoria, setcategoria] = useState("");
-	const [contacto, setcontacto] = useState("");
 	const [id, setid] = useState("");
-  
+	const [precioC, setPrecioC] = useState("");
+	const [precioP,setPrecioP] = useState("");
+	const [hayFoto, setHayFoto] = useState(false);
+
+
+	const obtenerDatosProductos = async () => {
+		try {
+			const idProducto = Cookies.get('idProducto');
+			const response = await fetch('/productos/obtenerProducto', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({id: idProducto}),
+			});
+			const data = await response.json();
+
+			
+		} catch (error) {
+			console.error('Error al obtener productos:', error);
+			return;
+		}
+	}
+
+	useEffect(() => {
+		obtenerDatosProductos();
+		console.log("nombre", nombre);
+	}, []);
+
+
+	const separarPrecio = () => {
+		setPrecioP(precio.split('.')[0]);
+		setPrecioC(precio.split('.')[1]);
+	}
+	
+
 	//Usado para navegar con logica en js
 	let history = useNavigate();
   
@@ -31,23 +66,16 @@ export function Actualizar() {
 		"Papelería"
 	  ];
 	
-	  const opcionesContacto = [
-		"Facebook",
-		"WhatsApp",
-		"Instagram",
-		"Correo electrónico",
-		"Otro"
-	  ];
 	
 	  const [producto, setProducto] = useState({
 		nombre: '',
 		descripcion: '',
 		categoria: '',
 		imagen: null,
-		tipoContacto: '',
 		contacto: '',
 		precio: ''
 	  });
+
 	  const [errores, setErrores] = useState({
 		nombre: false,
 		descripcion: false,
@@ -78,6 +106,7 @@ export function Actualizar() {
 	  };
 
 	const handleImagenChange = e => {
+		setHayFoto(true);
 		const imagen = e.target.files[0];
 		setProducto(prevState => ({
 		  ...prevState,
@@ -89,23 +118,28 @@ export function Actualizar() {
 		}));
 	  };
 
-	  const handleTipoContactoChange = e => {
-		const { value } = e.target;
-		setProducto(prevState => ({
-		  ...prevState,
-		  tipoContacto: value,
-		  contacto: '' // Limpiar el campo de contacto cuando cambie el tipo de contacto
-		}));
-	  };
+
 
 	// Funcion para manejar la actualizacion y generar los cambios
 	const handelSubmit = (e) => {
 	  // Preventing from reload
 	  e.preventDefault();
-	  if (nombre === "" || precio === "" || cantidad === "" || descripcion === "" || foto === "" || categoria === "") {
-		alert("Favor de llenar todos los campos");
+	  if (nombre === "" || precioP === "" ||precioC === ""||hayFoto==="false" || cantidad === "" || descripcion === "" || categoria === "") 
+	  {alert("Favor de llenar todos los campos");
 		return;
-	  }
+	}
+	else{
+		console.log("nombre", nombre);
+		console.log("precio", precio);
+		console.log("cantidad", cantidad);
+		console.log("descripcion", descripcion);
+		console.log("categoria", categoria);
+
+		console.log("id", id);
+
+	}
+
+	  
   
 	  // Crear un objeto con los datos actualizados
 	  const datosActualizados = {
@@ -186,15 +220,14 @@ export function Actualizar() {
           	<Form.Label>Imagen</Form.Label>
 			<Form.Control
 			  value={foto}
-			  onChange={(e) => setfoto(e.target.value)}
-			  //onChange={handleImagenChange}  
+			  onChange={handleImagenChange}  
 			  type="file"
 			  accept=".png,.jpg"
 			  //placeholder="Imagen"
 			  name="imagen" 
 			  isInvalid={errores.imagen} required
 			/>
-			<Form.Text muted>Solo se aceptan imágenes en formato .png y .jpg</Form.Text>
+			<Form.Text muted>Solo se aceptan imágenes en formato .jpeg y .jpg</Form.Text>
 			<Form.Control.Feedback type="invalid">Recuerda subir una imagen</Form.Control.Feedback>
 		  </Form.Group>
 
@@ -203,32 +236,6 @@ export function Actualizar() {
 		<div className="ColumnaFormDer">
 		<Form className="d-form" style={{ margin: "5rem" }}>
 
-		<Form.Group className="mb-3" controlId="tipoContacto">
-          <Form.Label>Tipo de Contacto</Form.Label>
-          <Form.Control as="select" name="tipoContacto" 
-		  value={producto.tipoContacto} onChange={handleTipoContactoChange} 
-		  isInvalid={errores.tipoContacto} required>
-            <option value="">Selecciona una opción</option>
-            {opcionesContacto.map((opcion, index) => (
-              <option key={index} value={opcion}>{opcion}</option>
-            ))}
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">Recuerda seleccionar una opción</Form.Control.Feedback>
-        </Form.Group>
-        {producto.tipoContacto && producto.tipoContacto !== "Otro" && (
-          <Form.Group className="mb-3" controlId="contacto">
-            <Form.Label>{producto.tipoContacto === "Correo electrónico" ? "Correo" : "Usuario"} *</Form.Label>
-            <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
-            <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
-          </Form.Group>
-        )}
-        {producto.tipoContacto === "Otro" && (
-          <Form.Group className="mb-3" controlId="contacto">
-            <Form.Label>Otro</Form.Label>
-            <Form.Control type="text" name="contacto" value={producto.contacto} onChange={handleChange} isInvalid={errores.contacto} required />
-            <Form.Control.Feedback type="invalid">Recuerda llenar este campo</Form.Control.Feedback>
-          </Form.Group>
-        )}
 
 <Form.Group controlId="precio">
       <Form.Label>Precio *</Form.Label>
@@ -237,7 +244,7 @@ export function Actualizar() {
         <Form.Control
           type="number"
           name="precioP"
-          value={producto.precioP}
+          value={precioP}
           onChange={handleChange}
           isInvalid={!!errores.precio}
           required
@@ -248,7 +255,7 @@ export function Actualizar() {
         <Form.Control
           type="number"
           name="precioC"
-          value={producto.precioC}
+          value={precioC}
           onChange={handleChange}
           isInvalid={!!errores.precio}
           required

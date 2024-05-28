@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from alchemyClasses import db
 from alchemyClasses.Producto import Producto
 from model.modelProducto import *
+import simplejson as json
 
 
 
@@ -44,3 +45,11 @@ def darDeBajaProducto():
     idProducto = data['id']
     eliminarProducto(idProducto)
     return {'mensaje': 'Producto dado de baja exitosamente'}
+
+@productoController.route('/obtenerProducto', methods=['POST'])
+def obtenerProducto():
+    data = request.get_json()
+    idProducto = data['id']
+    producto = obtenerProductoPorId(idProducto)
+    resultadoJson = json.dumps(producto)
+    return producto

@@ -59,3 +59,16 @@ def eliminarProducto(idProducto):
     db.session.delete(producto)
     db.session.commit()
     return {'mensaje': 'Producto dado de baja exitosamente'}
+
+def obtenerProductoPorId(idProducto):
+    """ Funcion que obtiene un producto por su id
+    Parámetros:
+    idProducto: int -> id del producto a obtener
+    Retorna:
+    diccionario con el producto serializado
+    """
+    producto = Producto.query.filter(Producto.idProducto == idProducto).first()
+    print(producto)
+    if producto  == []:
+        return [ ]
+    return producto.to_dic()
