@@ -53,3 +53,31 @@ def obtenerProducto():
     producto = obtenerProductoPorId(idProducto)
     resultadoJson = json.dumps(producto)
     return producto
+
+@productoController.route('/actualizarProductos', methods=['POST'])
+def actualizarProductos():
+    data = request.get_json()
+    idProducto = data['id']
+    nombre = data['nombre']
+    descripcion = data['descripcion']
+    precioP = data['precioP']
+    precioC = data['precioC']
+    categoria = data['categoria']
+    cantidad = data['cantidad']
+    imagen = data['imagen']
+    fotoOriginal = data['fotoOriginal']
+    precio=precioFloat(precioP, precioC)
+    if imagen == '':
+        imagen = fotoOriginal
+    else:
+        imagen = obtenerBinario(imagen)
+    producto = Producto.query.filter(Producto.idProducto == idProducto).first()
+    producto.nombre = nombre
+    producto.descripcion = descripcion
+    producto.precio = precio
+    producto.imagen = imagen
+    producto.cantidad = cantidad
+    producto.categoria = categoria
+    db.session.commit()
+    
+    return {'mensaje': 'Producto actualizado exitosamente'}

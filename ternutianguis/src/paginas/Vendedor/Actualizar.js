@@ -17,6 +17,8 @@ export function Actualizar() {
 	const [precioC, setPrecioC] = useState("");
 	const [precioP,setPrecioP] = useState("");
 	const [hayFoto, setHayFoto] = useState(false);
+	const [hayFotoNueva, setHayFotoNueva] = useState(false);
+	const [fotoOriginal, setFotoOriginal] = useState("");
 
 
 	const obtenerDatosProductos = async () => {
@@ -30,8 +32,15 @@ export function Actualizar() {
 				body: JSON.stringify({id: idProducto}),
 			});
 			const data = await response.json();
-
-			
+			setnombre(data.nombre);
+			setdescripcion(data.descripcion);
+			setprecio(data.precio);
+			setPrecioC(data.precio.split('.')[1]);
+			setPrecioP(data.precio.split('.')[0]);
+			setcantidad(data.cantidad);
+			setcategoria(data.categoria);
+			setFotoOriginal(data.imagen);
+			setHayFoto(true);	
 		} catch (error) {
 			console.error('Error al obtener productos:', error);
 			return;
@@ -43,11 +52,6 @@ export function Actualizar() {
 		console.log("nombre", nombre);
 	}, []);
 
-
-	const separarPrecio = () => {
-		setPrecioP(precio.split('.')[0]);
-		setPrecioC(precio.split('.')[1]);
-	}
 	
 
 	//Usado para navegar con logica en js
@@ -86,32 +90,12 @@ export function Actualizar() {
 		precio: false
 	  });
 	
-	  const handleChange = e => {
-		const { name, value } = e.target;
-		if (name === 'precio' && /^\$?\d*\.?\d{0,2}$/.test(value)) {
-		  setProducto(prevState => ({
-			...prevState,
-			[name]: value
-		  }));
-		} else {
-		  setProducto(prevState => ({
-			...prevState,
-			[name]: value
-		  }));
-		}
-		setErrores(prevState => ({
-		  ...prevState,
-		  [name]: false
-		}));
-	  };
 
 	const handleImagenChange = e => {
 		setHayFoto(true);
+		setHayFotoNueva(true);
 		const imagen = e.target.files[0];
-		setProducto(prevState => ({
-		  ...prevState,
-		  imagen: imagen
-		}));
+		setfoto(imagen);
 		setErrores(prevState => ({
 		  ...prevState,
 		  imagen: false
@@ -121,22 +105,43 @@ export function Actualizar() {
 
 
 	// Funcion para manejar la actualizacion y generar los cambios
-	const handelSubmit = (e) => {
-	  // Preventing from reload
+	const handelSubmit = async (e) => {
 	  e.preventDefault();
-	  if (nombre === "" || precioP === "" ||precioC === ""||hayFoto==="false" || cantidad === "" || descripcion === "" || categoria === "") 
-	  {alert("Favor de llenar todos los campos");
-		return;
-	}
-	else{
-		console.log("nombre", nombre);
-		console.log("precio", precio);
-		console.log("cantidad", cantidad);
-		console.log("descripcion", descripcion);
-		console.log("categoria", categoria);
-
-		console.log("id", id);
-
+	  if (nombre && descripcion && precioP && precioC && categoria && cantidad && hayFoto) {
+		try {
+			const idProducto = Cookies.get('idProducto');
+			const response = await fetch('/productos/actualizarProductos', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					id: idProducto,
+					nombre: nombre,
+					descripcion: descripcion,
+					precioP: precioP,
+					precioC: precioC,
+					categoria: categoria,
+					cantidad: cantidad,
+					imagen: foto,
+					fotoOriginal: fotoOriginal
+				}),
+			});
+			const data = await response.json();
+			alert(data.mensaje);
+			Cookies.remove('idProducto');
+			window.location.href = '/verProductos';
+			
+		} catch (error) {
+			console.log('Error al actualizar producto:', error);
+			return;
+		}
+	  }
+	  
+	  else {
+		alert('Por favor, llena todos los campos');
+		return;	
+	  }
 	}
 
 	  
@@ -151,30 +156,7 @@ export function Actualizar() {
 		categoria,
 	  };
   
-	  // Enviar los datos al backend
-	  fetch('/actualizar' + id, {
-		method: 'PUT',
-		headers: {
-		  'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(datosActualizados)
-	  })
-	  .then(response => {
-		if (!response.ok) {
-		  throw new Error('Error al actualizar el producto');
-		}
-		return response.json();
-	  })
-	  .then(data => {
-		console.log('Producto actualizado:', data);
-		// Redireccionar a la página de inicio después de editar
-		history('/inicio');
-	  })
-	  .catch(error => {
-		console.error('Error:', error);
-		alert('Error al actualizar el producto. Por favor, intenta de nuevo.');
-	  });
-	};
+	  
   
 	return (
 	<div className="ContenedorActualizar">
@@ -208,7 +190,7 @@ export function Actualizar() {
 		  <Form.Group className="mb-3" controlId="categoria">
 		  <Form.Label>Categoria</Form.Label>
 		  <Form.Control as="select" name="categoria" 
-		  value={producto.categoria} onChange={handleChange} isInvalid={errores.categoria} required>
+		  value={categoria} onChange={(e)=>setcategoria(e.target.value)} isInvalid={errores.categoria} required>
 			<option value="">Selecciona una categoría</option>
             {categorias.map((categoria, index) => (
               <option key={index} value={categoria}>{categoria}</option>
@@ -245,7 +227,7 @@ export function Actualizar() {
           type="number"
           name="precioP"
           value={precioP}
-          onChange={handleChange}
+          onChange={(e)=>setPrecioP(e.target.value)}
           isInvalid={!!errores.precio}
           required
           className="dolares-input"
@@ -256,7 +238,7 @@ export function Actualizar() {
           type="number"
           name="precioC"
           value={precioC}
-          onChange={handleChange}
+          onChange={(e)=>setPrecioC(e.target.value)}
           isInvalid={!!errores.precio}
           required
           className="centavos-input"
