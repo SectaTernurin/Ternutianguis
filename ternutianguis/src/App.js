@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './paginas/Home';
 //import { Inicio } from './paginas/Inicio';
+import { DetallesProducto } from './paginas/Comprador/DetallesProducto';
 import { NavBarAux } from './paginas/NavBarAux';
 import { InicioComprador } from './paginas/InicioComprador';
 import { Acceder } from './paginas/General/Acceder';
@@ -47,6 +48,7 @@ function App() {
             <Route path="/inicioC" element={<InicioComprador />} />
             <Route path="/buscarP" element={<BuscarP />} />
             <Route path="/review" element={<ReviewProducto />} />
+            <Route path="/producto/:id" component={DetallesProducto} />
             <Route path="/actualizar" element={<Actualizar />} />
             <Route path="/agregar" element={<AltaProducto />} />
             <Route path="/verProductos" element={<VerProductos />} />
