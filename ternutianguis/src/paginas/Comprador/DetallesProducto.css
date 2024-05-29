@@ -1,0 +1,28 @@
+.detalles-producto .Imagen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detalles-producto .Detalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detalles-producto .Detalles h3 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.detalles-producto .Detalles p {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.detalles-producto .Detalles button {
+  text-align: center;
+  background-color: blueviolet;
+  border-color: blueviolet;
+  margin-top: 2rem;
+}

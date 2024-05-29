@@ -31,8 +31,6 @@ function App() {
     return Cookies.get('language'); // Obtiene la cookie 'language'
   }
 
-  
-
   const currentPage = window.location.pathname;
 
   return (
@@ -48,7 +46,8 @@ function App() {
             <Route path="/inicioC" element={<InicioComprador />} />
             <Route path="/buscarP" element={<BuscarP />} />
             <Route path="/review" element={<ReviewProducto />} />
-            <Route path="/producto/:id" component={DetallesProducto} />
+            <Route path="/producto" element={<DetallesProducto />} />
+            {/*<Route path="/producto/:id" component={DetallesProducto} />*/}
             <Route path="/actualizar" element={<Actualizar />} />
             <Route path="/agregar" element={<AltaProducto />} />
             <Route path="/verProductos" element={<VerProductos />} />

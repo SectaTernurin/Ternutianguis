@@ -1,52 +1,36 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Row, Col, Image } from 'react-bootstrap';
-
-
-    const obtenerProductoPorId = (id) => {
-    const productos = [
-        // Agregar los productos
-    ];
-    return productos.find(producto => producto.id === parseInt(id));
-    };
-
-    /**
-     * Función que dada una cadena en base64, la convierte en una imagen
-     * @param {*} cadena  cadena en base64
-     * @returns url de la imágen 
-     */
-    const cadenaAImagen = (cadena) =>{
-
-        const byteCharacters = atob(cadena);//Pasamos de base64 a binario
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) { //Convertimos a un array de enteros
-            byteNumbers[i] = byteCharacters.charCodeAt(i); //Obtenemos el valor ASCII de cada caracter
-        }
-        const byteArray = new Uint8Array(byteNumbers); //Convertimos a un array de enteros sin signo
-        return URL.createObjectURL(new Blob([byteArray], { type: 'image/jpeg' })); //Creamos la url de la imagen
-    }
-
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import './DetallesProducto.css';
 
 export const DetallesProducto = () => {
-  const { id } = useParams();
-  const producto = obtenerProductoPorId(id);
+  const producto = {
+    nombre: 'Ternurin',
+    foto: '../imagenes/ternurin.jpeg',
+    precio: '250.00',
+    descripcion: 'Aqui va la descripcion'
+  };
 
-  if (!producto) {
-    return <div>Producto no encontrado</div>;
-  }
+  const handleComprar = () => {
+    if (window.confirm('¿Está seguro de que desea comprar este producto?')) {
+      alert('Producto comprado con éxito!');
+    }
+  };
 
   return (
-    <Container>
+    <Container className="detalles-producto">
       <Row>
         <Col className='Imagen'>
-          <Image width="50%" height="auto" src={cadenaAImagen(producto.foto)} rounded />
+          <Image width="100%" height="auto" src={producto.foto} rounded />
         </Col>
-        <Col>
+        <Col className='Detalles'>
           <h3>{producto.nombre}</h3>
           <p>Precio: ${producto.precio}</p>
-          {/* Aqui se agrega más sobre los productos */}
+          <p>{producto.descripcion}</p>
+          <Button className="btn-comprar" variant="primary" onClick={handleComprar}>Comprar</Button>
         </Col>
       </Row>
     </Container>
   );
 };
+
+export default DetallesProducto;
