@@ -20,25 +20,18 @@ export const NavBarAux = () => {
             </>
           ) : currentPage === '/acceder' || currentPage === '/registrarse'? (
             <Nav.Link href="/">Regresar</Nav.Link>
-          ) : currentPage === '/verProductos' || currentPage === '/agregar'? (
-            <Nav.Link href="/inicio">Regresar</Nav.Link>
+          ) : currentPage === '/actualizar' || currentPage === '/agregar'? (
+            <Nav.Link href="/verProductos">Regresar</Nav.Link>
           ) : currentPage === '/review'? (
             <Nav.Link href="/inicioC">Regresar</Nav.Link>
-          ) : currentPage === '/inicio' ? (
+          ) : currentPage === '/verProductos' ? (
             <Nav className="custom-nav">
-              <Nav.Link href="/agregar">Agrega Producto</Nav.Link>
-              <Nav.Link href="/verProductos">Consultar tus productos</Nav.Link>
               <Nav.Link href="/cerrarSesion">Cerrar Sesión</Nav.Link>
             </Nav>
           ) : currentPage === '/inicioC' ? (
             <Nav className="custom-nav">
               <Nav.Link href="/review">Review</Nav.Link>
               <Nav.Link href="/cerrarSesion">Cerrar Sesión</Nav.Link>
-            </Nav>
-          ) : currentPage === '/actualizar' ? (
-            <Nav className="custom-nav">
-              <Nav.Link href="/verProductos">Regresar</Nav.Link>
-              <Nav.Link href="/inicio">Inicio</Nav.Link>
             </Nav>
           ) : ( 
             null

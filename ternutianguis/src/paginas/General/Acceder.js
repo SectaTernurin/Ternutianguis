@@ -47,7 +47,7 @@ export class Acceder extends Component { // Exportamos por defecto aquí
         if (data.usuario) {
           // Usuario valido, guardamos el token en las cookies
           Cookies.set('usuario', data.id)
-          window.location.href = '/inicio';
+          window.location.href = '/verProductos';
         } else {
           if (data.errorC === 'Contrasena incorrecta') {
             this.setState({ mensaje: 'La contraseña ingresada es incorrecta.' });
