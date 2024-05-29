@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './paginas/Home';
-import { Inicio } from './paginas/Inicio';
+//import { Inicio } from './paginas/Inicio';
+import { DetallesProducto } from './paginas/Comprador/DetallesProducto';
 import { NavBarAux } from './paginas/NavBarAux';
 import { InicioComprador } from './paginas/InicioComprador';
 import { Acceder } from './paginas/General/Acceder';
@@ -30,8 +31,6 @@ function App() {
     return Cookies.get('language'); // Obtiene la cookie 'language'
   }
 
-  
-
   const currentPage = window.location.pathname;
 
   return (
@@ -44,10 +43,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/acceder" element={<Acceder />} />
             <Route path="/registrarse" element={<Registrarse />} />
-            <Route path="/inicio" element={<Inicio />} />
             <Route path="/inicioC" element={<InicioComprador />} />
             <Route path="/buscarP" element={<BuscarP />} />
             <Route path="/review" element={<ReviewProducto />} />
+            <Route path="/producto" element={<DetallesProducto />} />
+            {/*<Route path="/producto/:id" component={DetallesProducto} />*/}
             <Route path="/actualizar" element={<Actualizar />} />
             <Route path="/agregar" element={<AltaProducto />} />
             <Route path="/verProductos" element={<VerProductos />} />

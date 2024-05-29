@@ -45,18 +45,18 @@ export const AltaProducto = () => {
     const { name, value } = e.target;
     let erroresActualizados = { ...errores };
 
-    if (name === 'precioDolares') {
-      const precioDolares = value.replace(/[^0-9]/g, '');
-      setProducto((prevProducto) => ({ ...prevProducto, precioDolares }));
-    } else if (name === 'precioCentavos') {
-      const precioCentavos = value.replace(/[^0-9]/g, '').slice(0, 2);
-      setProducto((prevProducto) => ({ ...prevProducto, precioCentavos }));
+    if (name === 'precioP') {
+      const precioP = value.replace(/[^0-9]/g, '');
+      setProducto((prevProducto) => ({ ...prevProducto, precioP }));
+    } else if (name === 'precioC') {
+      const precioC = value.replace(/[^0-9]/g, '').slice(0, 2);
+      setProducto((prevProducto) => ({ ...prevProducto, precioC }));
     } else {
       setProducto((prevProducto) => ({ ...prevProducto, [name]: value }));
     }
 
     // Validar si ambos campos están vacíos
-    if (producto.precioDolares === '' && producto.precioCentavos === '') {
+    if (producto.precioP === '' && producto.precioCentavos === '') {
       erroresActualizados.precio = 'El precio no puede estar vacío';
     } else {
       erroresActualizados.precio = '';
@@ -116,14 +116,14 @@ export const AltaProducto = () => {
         contacto: '',
         precio: ''
       });
-      window.location.href = '/inicio';
+      window.location.href = '/verProductos';
     } catch (error) {
       console.error('Error al dar de alta el producto:', error);
     }
   };
 
   const handleCancel = () => {
-    window.location.href = '/inicio';
+    window.location.href = '/verProductos';
   };
 
   return (

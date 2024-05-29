@@ -61,7 +61,7 @@ export class Registrarse extends Component {
   
         if (data.registro === 'Registro realizado exitosamente.') {
           alert('Se ha completado tu registro, tu contraseña fue enviada a tu correo.');
-          window.location.href = '/login';
+          window.location.href = '/acceder';
         } else {
           this.setState({ mensaje: 'No se realizó el registro, el correo ya está registrado' });
         }
