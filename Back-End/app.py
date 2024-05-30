@@ -3,6 +3,7 @@ from alchemyClasses import db
 from controller.generalController import generalController
 from controller.productoController import productoController
 from controller.vendedorController import vendedorController
+from controller.compradorController import compradorController
 from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
@@ -10,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://adminTernu:TernuTiangui
 app.register_blueprint(generalController)
 app.register_blueprint(productoController)
 app.register_blueprint(vendedorController)
+app.register_blueprint(compradorController)
 app.config['SECRET_KEY'] = 'dev'
 
 db.init_app(app)

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -19,6 +19,35 @@ export const BuscarP = () => {
     const [productos, setProductos] = useState([]); // Estado para almacenar los productos encontrados
     const [habilitarCategoria, setHabilitarCategoria] = useState(false); // Estado para habilitar la selección de categoría
     const [categoria, setCategoria] = useState(''); // Estado para almacenar la categoría seleccionada
+    
+    useEffect(() => {
+        buscarProducto();
+        }   , []);
+        
+    /***
+    * Funcion con la cual obtenemos todos los productos de la base de datos
+    *  @returns 
+    */
+    const buscarProducto = async () => {
+        try {
+            const response = await fetch('/comprador/obtenerProductos', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({id: 0}),
+              });
+            const data = await response.json();
+            setProductos(data.Productos);
+        }
+        catch (error) {
+            console.error('Error al buscar productos por categoría:', error);
+            return;
+        }
+    }
+        
+        
+
 
     /**
      * Asigna a buscar el estado que contiene el nombre del producto a buscar 
@@ -54,7 +83,7 @@ export const BuscarP = () => {
             /**
              * Estructura estandar para hacer petición al servidor flask 
              */
-            const response = await fetch('/buscarCategoria', { 
+            const response = await fetch('/comprador/buscarCategoria', { 
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -92,7 +121,7 @@ export const BuscarP = () => {
 
         try {
 
-            const response = await fetch('/buscarProducto', {
+            const response = await fetch('/comprador/buscarProductos', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -117,7 +146,7 @@ export const BuscarP = () => {
      */
     const buscarProductoCategoria =async () => {
         try {
-            const response = await fetch('/buscarProductoCategoria', {
+            const response = await fetch('/comprador/buscarProductoCategoria', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -159,7 +188,7 @@ export const BuscarP = () => {
                     <Container>
                         <Row>
                             <Col className='Imagen'>
-                                <Image width="30%" height="auto" src={cadenaAImagen(producto.foto)} rounded />
+                            <img src={cadenaAImagen(producto.imagen)} alt="Imagen" width="100" height="100"/>
                             </Col>
                             <Col>
                             <Container>
@@ -253,7 +282,7 @@ export const BuscarP = () => {
             )
         }
     }
-    
+
 
     return ( 
         <div className="Contenedor">

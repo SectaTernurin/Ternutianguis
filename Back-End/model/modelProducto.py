@@ -72,3 +72,78 @@ def obtenerProductoPorId(idProducto):
     if producto  == []:
         return [ ]
     return producto.to_dic()
+
+def obtenerTodosProductos():
+    """ Funcion que obtiene todos los productos
+    Retorna:
+    diccionario con todos los productos serializados
+    """
+    productos = Producto.query.all()
+    if productos == []:
+        return [ ]
+    return preparar_producto(productos)
+
+def buscarProductoExacto(nombre):
+    """ Función que busca un producto por su nombre exacto
+    Parámetros: 
+    nombre: str -> nombre del producto a buscar
+    Retorna:
+    diccionario con los productos encontrados
+    """
+    producto = Producto.query.filter(Producto.nombre == nombre).all()
+    if producto == []:
+        return [ ]
+    return preparar_producto(producto)
+
+def buscarProductoSimilar(nombre):
+    """ Funcíon que busca productos similares al nombre dado
+    Parámetros:
+    nombre: str -> nombre del producto a buscar
+    Retorna:
+    diccionario con los productos encontrados
+    """
+    productos = Producto.query.filter(Producto.nombre.like("%" + nombre + "%")).all()
+    if productos == []:
+        return [ ]
+    return preparar_producto(productos)
+
+def buscarCategoria(categoria):
+    """ Función que busca productos por categoria
+    Parámetros:
+    categoria: str -> categoria de los productos a buscar
+    Retorna:
+    diccionario con los productos encontrados"""
+    productos = Producto.query.filter(Producto.categoria == categoria).all()
+    if productos == []:
+        return [ ]
+    return preparar_producto(productos)
+
+def buscarProductosCategoria(nombre, categoria):
+    """ Función que busca productos por nombre y categoria
+    Parámetros:
+    nombre: str -> nombre del producto a buscar
+    categoria: str -> categoria de los productos a buscar
+    Retorna:
+    diccionario con los productos encontrados
+    """
+    productos = Producto.query.filter(Producto.nombre.like("%" + nombre + "%"), Producto.categoria == categoria).all()
+    if productos == []:
+        return [ ]
+    return preparar_producto(productos)
+
+def buscarProducto(nombre):
+    """ Función que busca un producto por su nombre. 
+    si no encuentra el producto, busca productos similares
+    Parámetros:
+    nombre: str -> nombre del producto a buscar
+    Retorna:
+    diccionario con los productos encontrados
+    """
+    productos = buscarProductoExacto(nombre)
+    if productos == []:
+        productos = buscarProductoSimilar(nombre)
+        if productos == []:
+            return {
+                "error": "Producto no encontrado"
+            }
+    return productos
