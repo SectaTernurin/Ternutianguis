@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import './DetallesProducto.css';
 import Cookies from 'js-cookie';
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 
 
@@ -12,6 +13,8 @@ export const DetallesProducto = () => {
 
   const [producto, setProducto] = useState({});
   const [agotado, setAgotado] = useState(false);
+
+  const navigate = useNavigate();
 
 
 	const obtenerDatosProductos = async () => {
@@ -89,7 +92,7 @@ export const DetallesProducto = () => {
     }
     else {
       return (
-        <Button className="btn-comprar" variant="primary" onClick={handleComprar} >Comprar</Button>
+        <Button className="btn-comprar" variant="primary" onClick={handleComprar} >Apartar</Button>
       );
     }
 
@@ -106,9 +109,14 @@ export const DetallesProducto = () => {
           <p>Precio: ${producto.precio}</p>
           <p>{producto.descripcion}</p>
           {manejarProductoAgotado()}
+          <Link to={`/review`}>
+            <Button className="btn-comprar" variant="primary">Agregar una reseña</Button>
+          </Link>
         </Col>
       </Row>
+
     </Container>
+
   );
 };
 
