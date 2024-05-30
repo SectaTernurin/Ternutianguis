@@ -11,6 +11,7 @@ import { useState } from 'react';
 export const DetallesProducto = () => {
 
   const [producto, setProducto] = useState({});
+  const [agotado, setAgotado] = useState(false);
 
 
 	const obtenerDatosProductos = async () => {
@@ -25,11 +26,16 @@ export const DetallesProducto = () => {
 			});
 			const data = await response.json();
       setProducto(data);
+      if (data.cantidad === 0) {
+        setAgotado(true);
+      }
 		} catch (error) {
 			console.error('Error al obtener productos:', error);
 			return;
 		}
 	}
+
+
 
   useEffect(() => { obtenerDatosProductos(); }, []);
   
@@ -43,14 +49,51 @@ export const DetallesProducto = () => {
   return url;
  }
 
-
+  const apartarProducto = async () => {
+    try {
+      const idProducto = Cookies.get('idProducto');
+      const idComprador = Cookies.get('usuario');
+      const response = await fetch('/comprador/comprarProducto', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({idProducto: idProducto, idComprador: idComprador}),
+      });
+      const data = await response.json();
+      if (data.error) {
+        alert(data.error);
+      } else {
+        alert('Producto apartado con éxito! Se le enviara a su correo la información del vendendor.');
+      }
+    } catch (error) {
+      console.error('Error al apartar producto:', error);
+      return;
+    }
+  }
 
   const handleComprar = () => {
-    if (window.confirm('¿Está seguro de que desea comprar este producto?')) {
-      alert('Producto comprado con éxito! Se le enviara a su correo la información del vendendor.');
+    if (window.confirm('¿Está seguro de que desea apartar este producto?')) {
+      apartarProducto();
+      window.location.reload();
     }
   };
 
+  const manejarProductoAgotado = () => {
+    if (agotado) {
+      return (
+        <div className="producto-agotado">
+          <h3>Producto agotado</h3>
+        </div>
+      );
+    }
+    else {
+      return (
+        <Button className="btn-comprar" variant="primary" onClick={handleComprar} >Comprar</Button>
+      );
+    }
+
+  };
 
   return (
     <Container className="detalles-producto">
@@ -62,7 +105,7 @@ export const DetallesProducto = () => {
           <h3>{producto.nombre}</h3>
           <p>Precio: ${producto.precio}</p>
           <p>{producto.descripcion}</p>
-          <Button className="btn-comprar" variant="primary" onClick={handleComprar}>Comprar</Button>
+          {manejarProductoAgotado()}
         </Col>
       </Row>
     </Container>

@@ -3,6 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from alchemyClasses import db
 from alchemyClasses.Comprador import Comprador
 from model.modelProducto import *
+from model.modelCompra import *
 import simplejson as json
 
 
@@ -61,3 +62,10 @@ def buscarProductosPorCategoria():
     diccionario["Productos"] = lista
     resultadoJson = json.dumps(diccionario)
     return resultadoJson
+
+@compradorController.route('/comprarProducto', methods=['POST'])
+def comprarProducto():
+    idComprador = request.json['idComprador']
+    idProducto = request.json['idProducto']
+    apartarProducto(idComprador, idProducto)
+    return {"mensaje": "Compra exitosa"}
