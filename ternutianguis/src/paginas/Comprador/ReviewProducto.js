@@ -5,6 +5,7 @@ import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './ReviewProducto.css';
 
@@ -14,16 +15,12 @@ export const ReviewProducto = () => {
   const [review, setReview] = useState({ stars: 0, text: '' });
   const [reviews, setReviews] = useState([]);
 
+  const navigate = useNavigate();
+
   const cadenaAImagen = (cadena) =>{
     let url = 'data:image/png;base64,' + cadena;
     return url;
    }
-
-  useEffect(() => {
-    console.log(Cookies.get('nombreProducto'));
-    console.log(Cookies.get('imagen'));
-    console.log(Cookies.get('usuario'));
-  }, []);
 
   const handleRating = (newRating) => {
     setReview({ ...review, stars: newRating });
@@ -38,8 +35,37 @@ export const ReviewProducto = () => {
       alert("Hay campos sin rellenar.");
       return;
     }
-    console.log(review);
+    else{
+      enviarRespuesta();
+      navigate('/producto');
+    }
   };
+
+  const enviarRespuesta = async () => {
+		try {
+			const idProducto = Cookies.get('idProducto');
+			const response = await fetch('/comentarios/registrar', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(
+          {
+            idProducto: Cookies.get('idProducto'),
+            idUsuario: Cookies.get('usuario'),
+            comentario: review.text,
+            calificacion: review.stars
+          }
+        ),
+			});
+			const data = await response.json();
+      alert(data.mensaje);
+
+		} catch (error) {
+			console.error('Error al obtener productos:', error);
+			return;
+		}
+	}
 
   return (
     <div className='ContenedorReview'>
@@ -47,9 +73,6 @@ export const ReviewProducto = () => {
       <h2>{Cookies.get('nombreProducto')}</h2>
     </div>
     <div className="ColumnasContenedor">
-      <div className="column">
-      </div>
-
       <div className="column">
         <div className="product-reviews">
           <div>
