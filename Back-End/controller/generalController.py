@@ -29,8 +29,9 @@ def registrar():
     contrasena = crearContrasena()
 
     try:
-        if opcion == 'comprador':
-            registro = Comprador( nombre, apellidoPaterno, apellidoMaterno, nombreUsuario, contrasena, telefono, correo)
+        if opcion == 'comprador':     
+            
+            registro = Comprador( nombre, apellidoPaterno, nombreUsuario, contrasena,telefono,correo,apellidoMaterno)
         elif opcion == 'vendedor':
             registro = Vendedor( nombre, apellidoPaterno, apellidoMaterno, nombreUsuario, contrasena, telefono, correo)
 
