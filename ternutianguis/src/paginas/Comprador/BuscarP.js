@@ -9,6 +9,7 @@ import { Navbar } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import './BuscarP.css';
 import { useState } from 'react';
+import Cookies from 'js-cookie';
 
 /**
  * Componente eencargado de todo lo realciónado a la busqueda de productos 
@@ -23,7 +24,9 @@ export const BuscarP = () => {
     useEffect(() => {
         buscarProducto();
         }   , []);
-        
+
+
+
     /***
     * Funcion con la cual obtenemos todos los productos de la base de datos
     *  @returns 
@@ -45,6 +48,11 @@ export const BuscarP = () => {
             return;
         }
     }
+
+    const setID = (id) => {
+        // Función para manejar la actualización del producto.
+        Cookies.set('idProducto', id);
+    };
         
         
 
@@ -204,7 +212,7 @@ export const BuscarP = () => {
                                 </Row>
                                 <Row>
                                     <Col>
-                                    <Link to={`/producto/${producto.id}`}><Button variant="outline-secondary" size="sm">Ver producto</Button></Link>
+                                    <Link to={`/producto`}><Button onClick={() => setID(producto.id)} variant="outline-secondary" size="sm">Ver producto</Button></Link>
                                     </Col>
                                 </Row>
                             </Container>

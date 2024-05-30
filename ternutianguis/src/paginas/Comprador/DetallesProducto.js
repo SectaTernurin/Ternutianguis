@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import './DetallesProducto.css';
+import Cookies from 'js-cookie';
+
+
+
 
 export const DetallesProducto = () => {
   const producto = {
@@ -15,6 +19,11 @@ export const DetallesProducto = () => {
       alert('Producto comprado con éxito!');
     }
   };
+
+  useEffect(() => {
+    console.log(Cookies.get('idProducto'));
+    console.log(Cookies.get('usuario'));
+  }, []);
 
   return (
     <Container className="detalles-producto">
