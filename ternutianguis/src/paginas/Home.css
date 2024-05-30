@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 .App .Contenedor {
     background-color: lightblue;
     border-radius: 30px;
@@ -44,16 +46,19 @@
 
 
 .App h1 {
-    color: mediumorchid;
+    color: rgb(179, 71, 206);
     font-size: 50px;
-    font-family: monospace;
+    font-family: 'Poppins', sans-serif;
+/*    font-family: monospace; */
     text-align: center;
     margin: 0;
 }
 
 .App h2 {
-    color: mediumpurple;
+    color: rgb(134, 98, 206);
+    font-size: 40px;
     align-self: center;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
 }
 

@@ -59,6 +59,7 @@ npm start
 # Usuario valido 
 correo: juan2@gmail.com 
 contraseña: 1234
+rol: Comprador
 
 
 
