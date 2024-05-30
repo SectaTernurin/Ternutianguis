@@ -212,7 +212,7 @@ export const BuscarP = () => {
                                 </Row>
                                 <Row>
                                     <Col>
-                                    <Link to={`/producto`}><Button onClick={() => setID(producto.id)} variant="outline-secondary" size="sm">Ver producto</Button></Link>
+                                    <Link to={`/producto`}><div style={{ marginTop: '-25px' }}><Button onClick={() => setID(producto.id)} variant="outline-secondary" size="sm">Ver producto</Button></div></Link>
                                     </Col>
                                 </Row>
                             </Container>

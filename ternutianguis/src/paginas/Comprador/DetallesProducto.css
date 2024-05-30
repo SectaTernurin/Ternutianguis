@@ -13,6 +13,7 @@
 .detalles-producto .Detalles h3 {
   font-size: 2em;
   margin-bottom: 0.5em;
+  color: rgb(0, 58, 134);
 }
 
 .detalles-producto .Detalles p {
@@ -24,5 +25,35 @@
   text-align: center;
   background-color: blueviolet;
   border-color: blueviolet;
-  margin-top: 2rem;
+  margin-top: 0px;
+}
+
+.detalles-producto .Contenedor h3, .detalles-producto .ContenedorComentarios h3 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  color: rgb(0, 58, 134);
+}
+
+.detalles-producto .ContenedorComentarios{
+  width: 93%; /* Ocupa el 100% del ancho disponible */
+  height: 100%;
+  background-color: lightblue; /* Mantiene el color de fondo */
+  border-radius: 20px; /* Bordes redondeados */
+  margin-top: 20px;
+  margin-left: 60px;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  padding: 30px; /* Relleno interno */
+  box-sizing: border-box; /* Incluye padding en el tamaño total */
+  overflow: auto; /* Añade scroll si el contenido sobrepasa el tamaño del contenedor */
+}
+
+.comentario {
+  background-color: rgb(230, 240, 245);
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 100px;
+  padding: 30px;
+  width: 80%;
+  text-align: left;
 }

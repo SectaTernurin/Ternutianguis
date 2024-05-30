@@ -30,9 +30,6 @@ export const NavBarAux = () => {
             </Nav>
           ) : currentPage === '/inicioC' ? (
             <Nav className="custom-nav">
-              <Nav.Link href="/review">Review</Nav.Link>
-              <Nav.Link href="/producto">Producto</Nav.Link>
-              {/*<Nav.Link href={`/producto/${productoId}`}>Producto</Nav.Link>*/}
               <Nav.Link href="/cerrarSesion">Cerrar Sesión</Nav.Link>
             </Nav>
           ) : ( 

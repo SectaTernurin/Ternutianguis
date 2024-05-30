@@ -8,11 +8,9 @@ export const InicioComprador = () => {
    return (
      <div>
       <div className="Bienvenida">
-        <h2>Bienvenidx a Ternutianguis</h2>
+        <h2>Ternutianguis</h2>
       </div>
        <BuscarP />
      </div>
    );
  };
- 
-// export default Home;

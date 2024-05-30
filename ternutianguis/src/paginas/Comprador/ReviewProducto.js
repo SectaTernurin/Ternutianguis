@@ -76,7 +76,7 @@ export const ReviewProducto = () => {
       <div className="column">
         <div className="product-reviews">
           <div>
-            <h2>Agregar Reseña</h2>
+            <h4>Agregar Reseña</h4>
             <Form>
               <FormGroup>
                 <Label for="exampleText">Califica este producto</Label>

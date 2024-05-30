@@ -10,8 +10,6 @@ import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 
 
 
-
-
 export const DetallesProducto = () => {
 
   const [producto, setProducto] = useState({});
@@ -173,29 +171,34 @@ export const DetallesProducto = () => {
 
   return (
     <Container className="detalles-producto">
-      <Row>
-        <Col className='Imagen'>
-        <Image src={cadenaAImagen(producto.imagen)} alt={producto.nombre} width="500" height="auto" rounded />
-        </Col>
-        <Col className='Detalles'>
-          <h3>{producto.nombre}</h3>
-          <p>Precio: ${producto.precio}</p>
-          <p>{producto.descripcion}</p>
-          {manejarProductoAgotado()}
-          <Link to={`/review`}>
-            <Button className="btn-comprar" variant="primary">Agregar una reseña</Button>
-          </Link>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h3>Comentarios</h3>
-          {mostrarComentarios()}
-        </Col>
-      </Row>
+    <div className='Contenedor'>
+        <Row>
+          <Col className='Imagen'>
+          <Image src={cadenaAImagen(producto.imagen)} alt={producto.nombre} width="500" height="auto" rounded />
+          </Col>
+          <Col className='Detalles'>
+            <h3>{producto.nombre}</h3>
+            <p>Precio: ${producto.precio}</p>
+            <p>{producto.descripcion}</p>
+            {manejarProductoAgotado()}
+            <Link to={`/review`}>
+              <Button className="btn-comprar" variant="primary">Agregar una reseña</Button>
+            </Link>
+          </Col>
+        </Row>
+        </div>
 
-    </Container>
-
+        <div className='ContenedorComentarios'>
+          <Row>
+            <Col>
+              <h3>Comentarios</h3>
+              <div className='comentario'>
+                {mostrarComentarios()}
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </Container>
   );
 };
 

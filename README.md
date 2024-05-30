@@ -1,10 +1,9 @@
-# Secta Ternurin Práctica 5
-Se implementa el log in. 
+# Secta Ternurin Proyecto Final
 
-## Integrrantes:
+## Integrantes:
 
 - Regina Del Razo Castillo
-- Dulce Julietta Mora Hernández
+- Dulce Julieta Mora Hernández
 - Sara Lorena Matute Cantón
 - Brenda Paola Reséndiz Mendoza
 - José Luis Elguera Lugo
