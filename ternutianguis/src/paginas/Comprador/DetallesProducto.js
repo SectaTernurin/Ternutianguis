@@ -29,6 +29,7 @@ export const DetallesProducto = () => {
 			});
 			const data = await response.json();
       setProducto(data);
+      Cookies.set('nombreProducto', data.nombre);
       if (data.cantidad === 0) {
         setAgotado(true);
       }
