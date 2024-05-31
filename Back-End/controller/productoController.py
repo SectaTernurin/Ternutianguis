@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from alchemyClasses import db
 from alchemyClasses.Producto import Producto
 from model.modelProducto import *
+from model.modelComentario import *
 import simplejson as json
 
 
@@ -42,6 +43,7 @@ def darDeAltaProducto():
 @productoController.route('/darDeBajaProducto', methods=['POST', 'GET'])
 def darDeBajaProducto():
     data = request.get_json()
+    eliminarComentariosProducto(data['id'])
     idProducto = data['id']
     eliminarProducto(idProducto)
     return {'mensaje': 'Producto dado de baja exitosamente'}
@@ -64,20 +66,25 @@ def actualizarProductos():
     precioC = data['precioC']
     categoria = data['categoria']
     cantidad = data['cantidad']
-    imagen = data['imagen']
-    fotoOriginal = data['fotoOriginal']
     precio=precioFloat(precioP, precioC)
-    if imagen == '':
-        imagen = fotoOriginal
-    else:
-        imagen = obtenerBinario(imagen)
     producto = Producto.query.filter(Producto.idProducto == idProducto).first()
     producto.nombre = nombre
     producto.descripcion = descripcion
     producto.precio = precio
-    producto.imagen = imagen
     producto.cantidad = cantidad
     producto.categoria = categoria
     db.session.commit()
-    
     return {'mensaje': 'Producto actualizado exitosamente'}
+
+
+@productoController.route('/actualizarImagen', methods=['POST'])
+def actualizarImagen():
+    idProducto = request.form['id']
+    imagen = request.files['imagen']
+    producto = Producto.query.filter(Producto.idProducto == idProducto).first()
+    if allowed_file(imagen.filename):
+        blob=obtenerBinario(imagen) ## Pasamos la imagen a binario
+        db.session.commit()
+        return {'mensaje': 'Imagen actualizada exitosamente'}
+     
+    return {'mensaje': 'Formato de archivo no permitido'}
