@@ -45,7 +45,7 @@
   align-items: center;
 }
 
-.buttons a, .accept-button {
+.buttons a, .accept-button, .cancel-button {
   display: block;
   text-decoration: none;
   color: #fff;

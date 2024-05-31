@@ -1,16 +1,26 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Image from 'react-bootstrap/Image';
 import './CerrarSesion.css';
 
 export const CerrarSesion = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Obtener la ubicación actual
 
   const cerrarSesion = () => {
     console.log('Cerrando sesión');
     Cookies.remove('usuario');
     navigate('/'); // Redirige a la página /home después de cerrar sesión
+  };
+
+  const handleCancel = () => {
+    const from = new URLSearchParams(location.search).get('from');
+    if (from) {
+      navigate(from);
+    } else {
+      navigate('/'); // Redirige a una ruta predeterminada si no hay ruta de origen
+    }
   };
 
   return (
@@ -27,7 +37,8 @@ export const CerrarSesion = () => {
         <h1>¿Está seguro de cerrar sesión?</h1>
         <div className="buttons">
           <button className="accept-button" onClick={cerrarSesion}>Aceptar</button>
-          <Link to="/inicio" className="cancel-button">Cancelar</Link>
+          <button className="cancel-button" onClick={handleCancel}>Cancelar</button>
+          {/*<Link to="/inicio" className="cancel-button">Cancelar</Link>*/}
         </div>
       </div>
     </div>

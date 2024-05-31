@@ -2,10 +2,19 @@ import React from 'react';
 import { Navbar, Container, Nav, Image} from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import './NavBarAux.css';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export const NavBarAux = () => {
   const location = useLocation();
   const currentPage = location.pathname;
+
+  const handleCloseSessionClick = () => {
+    if (currentPage === '/inicioC') {
+      window.location.href = `/cerrarSesion?from=${location.pathname}`;
+    } else if (currentPage === '/verProductos'){
+      window.location.href = `/cerrarSesion?from=${location.pathname}`;
+    }
+  };
 
   return (
     <Navbar bg="light" variant="light">
@@ -25,13 +34,9 @@ export const NavBarAux = () => {
           ) : currentPage === '/review' || currentPage === '/producto'? (
             <Nav.Link href="/inicioC">Regresar</Nav.Link>
           ) : currentPage === '/verProductos' ? (
-            <Nav className="custom-nav">
-              <Nav.Link href="/cerrarSesion">Cerrar Sesión</Nav.Link>
-            </Nav>
+            <Nav.Link onClick={handleCloseSessionClick}>Cerrar Sesión</Nav.Link>
           ) : currentPage === '/inicioC' ? (
-            <Nav className="custom-nav">
-              <Nav.Link href="/cerrarSesion">Cerrar Sesión</Nav.Link>
-            </Nav>
+            <Nav.Link onClick={handleCloseSessionClick}>Cerrar Sesión</Nav.Link>
           ) : ( 
             null
           )}
