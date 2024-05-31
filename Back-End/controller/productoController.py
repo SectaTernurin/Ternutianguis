@@ -81,10 +81,10 @@ def actualizarProductos():
 def actualizarImagen():
     idProducto = request.form['id']
     imagen = request.files['imagen']
-    producto = Producto.query.filter(Producto.idProducto == idProducto).first()
     if allowed_file(imagen.filename):
-        blob=obtenerBinario(imagen) ## Pasamos la imagen a binario
+        blob = obtenerBinario(imagen) ## Pasamos la imagen a binario
+        producto = Producto.query.filter(Producto.idProducto == idProducto).first()
+        producto.foto = blob
         db.session.commit()
         return {'mensaje': 'Imagen actualizada exitosamente'}
-     
     return {'mensaje': 'Formato de archivo no permitido'}
