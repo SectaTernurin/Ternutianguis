@@ -120,6 +120,10 @@ export class Acceder extends Component { // Exportamos por defecto aquí
             </button>
           </div>
         </form>
+        <div>
+          <img src={require('../imagenes/Ternu3.png')} className="corner-image bottom-left" />
+          <img src={require('../imagenes/Ternu4.png')} className="corner-image bottom-right" />
+        </div>
       </div>
     );
   }
