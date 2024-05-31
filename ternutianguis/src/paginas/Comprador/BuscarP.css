@@ -32,7 +32,12 @@ input[type=text] {
 }
 
 .App .Contenedor .Productos .Imagen {
-    text-align: right;
+    text-align: center;
+}
+
+.App .Contenedor .Productos .Columna {
+    text-align: left;
+    margin-left: -80px;
 }
 
 .App .Contenedor .Etiqueta p{

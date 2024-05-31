@@ -19,6 +19,8 @@ import { VerProductos } from './paginas/Vendedor/VerProductos';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'js-cookie'; // Importamos Cookies de js-cookie
+//import { isUserLoggedIn } from './auth'; // Asegúrate de importar tu función de verificación de sesión
+import { Navigate, Outlet } from 'react-router-dom';
 
 function App() {
   // Función para establecer una cookie del idioma preferido del usuario
@@ -30,6 +32,14 @@ function App() {
   const getLanguageCookie = () => {
     return Cookies.get('language'); // Obtiene la cookie 'language'
   }
+
+  const isUserLoggedIn = () => {
+    return !!Cookies.get('usuario');
+  };
+
+  const PrivateRoute = () => {
+    return isUserLoggedIn() ? <Outlet /> : <Navigate to="/acceder" />;
+  };
 
   const currentPage = window.location.pathname;
 
@@ -43,17 +53,18 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/acceder" element={<Acceder />} />
             <Route path="/registrarse" element={<Registrarse />} />
-            <Route path="/inicioC" element={<InicioComprador />} />
-            <Route path="/buscarP" element={<BuscarP />} />
-            <Route path="/review" element={<ReviewProducto />} />
-            <Route path="/producto" element={<DetallesProducto />} />
-            {/*<Route path="/producto/:id" component={DetallesProducto} />*/}
-            <Route path="/actualizar" element={<Actualizar />} />
-            <Route path="/agregar" element={<AltaProducto />} />
-            <Route path="/verProductos" element={<VerProductos />} />
-            <Route path="/prototipo" element={<Prototipo />} />
-            <Route path="/eliminar" element={<VendedorProductos />} />
-            <Route path="/cerrarSesion" element={<CerrarSesion />} /> 
+            <Route element={<PrivateRoute />}>
+              <Route path="/inicioC" element={<InicioComprador />} />
+              <Route path="/buscarP" element={<BuscarP />} />
+              <Route path="/review" element={<ReviewProducto />} />
+              <Route path="/producto" element={<DetallesProducto />} />
+              <Route path="/actualizar" element={<Actualizar />} />
+              <Route path="/agregar" element={<AltaProducto />} />
+              <Route path="/verProductos" element={<VerProductos />} />
+              <Route path="/prototipo" element={<Prototipo />} />
+              <Route path="/eliminar" element={<VendedorProductos />} />
+              <Route path="/cerrarSesion" element={<CerrarSesion />} /> 
+            </Route>
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </div>

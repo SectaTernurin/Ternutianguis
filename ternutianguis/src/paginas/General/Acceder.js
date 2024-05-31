@@ -70,10 +70,44 @@ export class Acceder extends Component { // Exportamos por defecto aquí
     }
   }
 
+  componentDidMount() {
+    const leaves = document.querySelectorAll('.leaf');
 
+    leaves.forEach((leaf) => {
+      const randomLeafClass = `leaf${Math.floor(Math.random() * 3) + 1}`; // Elige aleatoriamente una clase de hoja entre leaf1, leaf2 y leaf3
+      leaf.classList.add(randomLeafClass);
+      const animationDuration = Math.random() * 10 + 5; // Duración de la animación entre 5 y 15 segundos
+      const startPosition = Math.random() * window.innerWidth; // Posición inicial aleatoria en el ancho de la pantalla
+
+      leaf.style.left = `${startPosition}px`; // Establecer la posición inicial
+
+      leaf.animate(
+        [
+          { top: '-20px', opacity: 0 }, // Estado inicial: arriba y transparente
+          { top: '100%', opacity: 1 }, // Estado final: abajo y visible
+        ],
+        {
+          duration: animationDuration * 900, // Convertir segundos a milisegundos
+          iterations: Infinity, // Repetir la animación infinitamente
+          easing: 'linear', // Tipo de animación lineal
+          delay: Math.random() * 5 * 1000, // Retraso aleatorio para iniciar la animación
+        }
+      );
+    });
+  }
+  
   render() {
     return (
       <div className="ContenedorAcceder">
+        <div className="leaves-container">
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+          <div className="leaf"></div>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <h3>Acceder</h3>
           {this.state.mensaje && <p>{this.state.mensaje}</p>}
@@ -120,6 +154,10 @@ export class Acceder extends Component { // Exportamos por defecto aquí
             </button>
           </div>
         </form>
+        <div>
+          <img src={require('../imagenes/Ternu3.png')} className="corner-image bottom-left" />
+          <img src={require('../imagenes/Ternu4.png')} className="corner-image bottom-right" />
+        </div>
       </div>
     );
   }

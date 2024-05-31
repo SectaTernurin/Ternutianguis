@@ -20,7 +20,7 @@ export const BuscarP = () => {
     const [productos, setProductos] = useState([]); // Estado para almacenar los productos encontrados
     const [habilitarCategoria, setHabilitarCategoria] = useState(false); // Estado para habilitar la selección de categoría
     const [categoria, setCategoria] = useState(''); // Estado para almacenar la categoría seleccionada
-    
+
     useEffect(() => {
         buscarProducto();
         }   , []);
@@ -194,12 +194,13 @@ export const BuscarP = () => {
             return (
                 <div key={index} className='Producto'>
                     <Container>
+                    <hr style={{ margin: '20px 0' }} /> {/* Línea divisoria */}
                         <Row>
                             <Col className='Imagen'>
                             <img src={cadenaAImagen(producto.imagen)} alt="Imagen" width="100" height="100"/>
                             </Col>
                             <Col>
-                            <Container>
+                            <Container className='Columna'>
                                 <Row>
                                     <Col>
                                     <h3>{producto.nombre}</h3>
@@ -212,14 +213,14 @@ export const BuscarP = () => {
                                 </Row>
                                 <Row>
                                     <Col>
-                                    <Link to={`/producto`}><Button onClick={() => setID(producto.id)} variant="outline-secondary" size="sm">Ver producto</Button></Link>
+                                    <Link to={`/producto`}><div style={{ marginTop: '-25px' }}><Button onClick={() => setID(producto.id)} variant="outline-secondary" size="sm">Ver producto</Button></div></Link>
                                     </Col>
                                 </Row>
                             </Container>
                             </Col>
                         </Row>
                     </Container>
-                    
+                    <hr style={{ margin: '20px 0' }} /> {/* Línea divisoria */}
                 </div>
             )
         });
