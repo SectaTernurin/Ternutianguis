@@ -142,8 +142,4 @@ def buscarProducto(nombre):
     productos = buscarProductoExacto(nombre)
     if productos == []:
         productos = buscarProductoSimilar(nombre)
-        if productos == []:
-            return {
-                "error": "Producto no encontrado"
-            }
     return productos
