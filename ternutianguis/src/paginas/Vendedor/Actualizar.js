@@ -11,7 +11,7 @@ export function Actualizar() {
 	const [descripcion, setdescripcion] = useState("");
 	const [precio, setprecio] = useState("");
 	const [cantidad, setcantidad] = useState("");
-	const [foto, setfoto] = useState("");
+	const [foto, setfoto] = useState( null );
 	const [categoria, setcategoria] = useState("");
 	const [id, setid] = useState("");
 	const [precioC, setPrecioC] = useState("");
@@ -110,6 +110,7 @@ export function Actualizar() {
 	  if (nombre && descripcion && precioP && precioC && categoria && cantidad && hayFoto) {
 		try {
 			const idProducto = Cookies.get('idProducto');
+			console.log(foto)
 			const response = await fetch('/productos/actualizarProductos', {
 				method: 'POST',
 				headers: {
@@ -123,10 +124,21 @@ export function Actualizar() {
 					precioC: precioC,
 					categoria: categoria,
 					cantidad: cantidad,
-					imagen: foto,
-					fotoOriginal: fotoOriginal
 				}),
 			});
+			
+			if (hayFotoNueva) {
+				const formData = new FormData();
+				formData.append('imagen', foto);
+				formData.append('id', idProducto);
+				const responseImage = await fetch('/productos/actualizarImagen', {
+					method: 'POST',
+					body: formData,
+				});
+				const dataImage = await responseImage.json();
+				alert(dataImage.mensaje);
+			}
+			
 			const data = await response.json();
 			alert(data.mensaje);
 			Cookies.remove('idProducto');
@@ -201,7 +213,6 @@ export function Actualizar() {
 		  <Form.Group className="mb-3" controlId="imagen">
           	<Form.Label>Imagen</Form.Label>
 			<Form.Control
-			  value={foto}
 			  onChange={handleImagenChange}  
 			  type="file"
 			  accept=".png,.jpg"

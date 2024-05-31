@@ -26,3 +26,9 @@ def prepararComentrario(comentarioO):
         "producto": nombreProducto,
         "calificacion": comentarioO.calificacion
     }
+
+def eliminarComentariosProducto(id):
+    comentarios = Comentario.query.filter(Comentario.idProducto == id).all()
+    for comentario in comentarios:
+        db.session.delete(comentario)
+    db.session.commit()
